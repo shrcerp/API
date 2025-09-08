@@ -1,0 +1,18 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [{
+      "key_name" : "data_global"
+      }]
+    ,"layouts" : [
+        {
+            "name" : "add_insurance_form"
+            ,"api_type" : "run_function"
+            ,"function" : "add_insurance_form_fun"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

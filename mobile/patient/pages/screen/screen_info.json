@@ -1,0 +1,16 @@
+{
+    "layout_type" : "login"
+    ,"keys" : []
+    ,"layouts" : [
+        {
+            "name" : "screen"
+            ,"api_type" : "run_function"
+            ,"function" : "get_screen_data"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

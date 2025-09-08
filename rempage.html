@@ -1,0 +1,84 @@
+<html>
+  <head>
+          <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+      <style>
+            .right-text{
+                text-align: right;
+            }
+            .containar{
+              padding: 15px;
+            }
+            .menu_bar{
+              background-color: #ee8133;
+              color: #ffffff;
+              font-size: 17px;
+              height: 40px;
+              padding: 8px;
+              text-align: center;
+              width: 100%;
+            }
+            .correct_answer{
+              width: 100%;
+            }
+            .correct_answer img{
+                height:auto;
+                width:100px;
+            }
+
+            .pay_success{
+                font-size: 25px;
+                text-align: center;
+                color:green;
+            }
+            .texta{
+                text-align:center
+            }
+            .containar{
+              padding: 10px;
+                margin: 34px;
+                box-shadow: 0px 0px 8px #0000004f;
+                background-color: #fff;
+                border-radius: 20px;
+                background-color: #fff;
+            }
+            body{
+              background-color: #efefef;
+            }
+      </style>
+  </head>
+  <body>
+
+      <div class="containar">
+        <div class="correct_answer" align="center"><img src="https://app.housepital.in/admin_new/data/app_icon/correct_sign_mark.png"></div>
+
+            <h4 class="pay_success">Payment Succefully</h4>
+           
+    </div>
+    <script>
+    var result= {
+        "next_page": {
+             "page_code": "view_data",
+             "data_self": "957",
+             "data_heading": "Success",
+             "data_url": "https://app.housepital.in/admin_new/App_api/paymentSuccess"
+         }
+      }
+
+      console.log(result);
+      window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+             // call flutter handler with name 'mySum' and pass one or more arguments
+             window.flutter_inappwebview
+         .callHandler('handlerFooWithArgs', result);
+           });
+       
+    </script>
+  </body>
+</html>

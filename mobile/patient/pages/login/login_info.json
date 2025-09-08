@@ -1,0 +1,20 @@
+{
+    "layout_type" : "login"
+    ,"keys" : [
+          {
+              "key_name" : "mobile"
+          }
+    ]
+    ,"layouts" : [
+        {
+            "name" : "login"
+            ,"api_type" : "run_function"
+            ,"function" : "login_get_data"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

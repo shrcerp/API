@@ -1,0 +1,16 @@
+{
+    "layout_type" : "login"
+    ,"keys" : []
+    ,"layouts" : [
+        {
+            "name" : "get_app_version_1"
+            ,"api_type" : "run_function"
+            ,"function" : "login_get_data"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

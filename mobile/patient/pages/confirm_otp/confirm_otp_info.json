@@ -1,0 +1,26 @@
+{
+    "layout_type" : "login"
+    ,"keys" : [
+          {
+              "key_name" : "mobile"
+          },
+          {
+              "key_name" : "otp"
+          },
+          {
+              "key_name" : "firebase_id"
+          }
+    ]
+    ,"layouts" : [
+        {
+            "name" : "otp_login"
+            ,"api_type" : "run_function"
+            ,"function" : "otp_login_get_data"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [{
+      "key_name" : "data_global"
+      },{
+        "key_name" : "elements"
+        },{
+          "key_name" : "data_self"
+          }]
+    ,"layouts" : [
+        {
+            "name" : "add_insurance_stage_reject_submit"
+            ,"api_type" : "run_function"
+            ,"function" : "add_insurance_stage_2_form_submit"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

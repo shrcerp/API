@@ -1,0 +1,18 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [{
+      "key_name" : "data_global"
+      }]
+    ,"layouts" : [
+        {
+            "name" : "upload_doc"
+            ,"api_type" : "save_upload_doc"
+            ,"function" : "save_upload_doc"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

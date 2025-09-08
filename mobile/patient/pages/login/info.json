@@ -1,0 +1,5 @@
+{
+    "layout_type" : "login"
+    ,"keys" : []
+    ,"layouts" : ["login.php"]
+}

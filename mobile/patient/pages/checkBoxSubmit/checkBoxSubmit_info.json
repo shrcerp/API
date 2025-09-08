@@ -1,0 +1,25 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [{
+      "key_name" : "data_global"
+
+    },{
+      "key_name" : "data_self"
+
+    },{
+      "key_name" : "element"
+
+    }]
+    ,"layouts" : [
+        {
+            "name" : "checkBoxSubmit"
+            ,"api_type" : "run_function"
+            ,"function" : "checkBoxSubmit_fun"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

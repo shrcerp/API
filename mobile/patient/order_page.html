@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <input type="button" id="create_link" value="Submit">
+            </div>
+        </div>
+        <script>
+            $("#create_link").click(function(){
+                var result= {
+                "next_page": {
+                     "page_code": "view_data",
+                     "data_self": "957",
+                     "data_heading": "Success",
+                     "data_url": "https://app.housepital.in/admin_new/App_api/paymentSuccess"
+                 }
+              }
+        
+              console.log(result);
+              window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+                     // call flutter handler with name 'mySum' and pass one or more arguments
+                     window.flutter_inappwebview
+                 .callHandler('handlerFooWithArgs', result);
+                   });
+            });
+            
+               
+            </script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+{
+    "layout_type" : "login"
+    ,"keys" : [
+      {
+          "key_name" : "data_global"
+      },
+     
+      {
+          "key_name" : "elements"
+      }
+    ]
+    ,"layouts" : [
+        {
+            "name" : "submit_patient_registration"
+            ,"api_type" : "run_function"
+            ,"function" : "submit_patient_registration"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

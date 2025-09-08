@@ -1,0 +1,25 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [{
+      "key_name" : "data_global"
+
+    },{
+      "key_name" : "data_self"
+
+    },{
+        "key_name" : "type"
+    }
+    ]
+    ,"layouts" : [
+        {
+            "name" : "booking_cancel"
+            ,"api_type" : "run_function"
+            ,"function" : "booking_cancel_function"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

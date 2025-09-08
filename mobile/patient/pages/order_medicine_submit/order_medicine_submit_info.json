@@ -1,0 +1,23 @@
+{
+    "layout_type" : "login"
+    ,"keys" : [
+                      {
+                      "key_name" : "data_global"
+                    },
+                    {
+                      "key_name" : "elements"
+                      }
+    ]
+    ,"layouts" : [
+        {
+            "name" : "order_medicine_submit"
+            ,"api_type" : "run_function"
+            ,"function" : "order_medicine_submit"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}
