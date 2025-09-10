@@ -311,7 +311,7 @@
                         "timestamp": "10 Aug 2021",
                         "next_page": {},
                         "elements": [
-                            "assets/slider/slider1.jpg",
+                            "assets/slider/slider1.jpg"
                         ]
                     },
                     {
