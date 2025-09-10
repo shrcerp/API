@@ -301,7 +301,7 @@
                     '.$payment_booking.'
                     {
                         "title": "Our Offers",
-                        "layout_code": "221",
+                        "layout_code": "301",
                         "textcolor_code": "#000000",
                         "text_fontsize": "14",
                         "text_fontweight": "normal",
@@ -311,11 +311,25 @@
                         "timestamp": "10 Aug 2021",
                         "next_page": {},
                         "elements": [
-                            "https://sarvodayahospital19.com/api/mobile/images/coupon_20.png",
-                            "https://sarvodayahospital19.com/api/mobile/images/coupon_20.png",
-                            "https://sarvodayahospital19.com/api/mobile/images/coupon_20.png"
+                            "assets/slider/slider1.jpg",
                         ]
                     },
+                    {
+            "title": "Book An Appointment",
+            "layout_code": "302",
+            "layout_des": "search_bar",
+            "sub_text": "",
+            "image": "https://d3ti1kcp1zfdnq.cloudfront.net/DR_AAYUSH_GUPTA_4e79c1943a.jpg",
+            "timestamp": "",
+            "web_link": "",
+            "web_view": "0",
+            "click_action": "1",
+            "web_view_heading": "",
+            "page_code": "5020",
+            "next_page": {
+            },
+            "elements": []
+        },
                      {
                       "title": "Document",
                       "layout_code": "303",
@@ -1353,7 +1367,7 @@
             );
             $i++;
         }
-        $result["image"] = $avatar_icon;
+        $result["stack_children"][0]["image"] = $avatar_icon;
 
         $result["stack_children"][0]["elements"][] = array(
             $i
