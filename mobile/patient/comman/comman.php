@@ -2,6 +2,17 @@
 
       include 'encrypt.php';
 
+        $dev_url = "https://sarvodayahospital19.com/api/mobile/test/";
+        $production_url = "https://sarvodayahospital19.com/api/mobile/patient/";
+
+        $hospital_name = [
+            "sector_8" => 'Sarvodaya Hospital Sec-8',
+            "sector_19" => 'Sarvodaya Hospital Sec-19',
+            "noida" => 'Sarvodaya Hospital Noida',
+        ];
+
+        $my_report = "https://sarvodayahospital19.com/api/mobile/patient/";
+
 
 
       function send_data($code,$message,$result = array()){

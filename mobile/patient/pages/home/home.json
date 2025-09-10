@@ -83,28 +83,18 @@
             ]
         },
         {
-            "title": "Dr. Aayush Gupta",
+            "title": "Book an Appointment",
             "layout_code": "302",
             "layout_des": "search_bar",
-            "sub_text": "05 Aug 2025 - 12:00 pm<br>Internal Medicine<br>Fees : <span style='color:green;font-weight:bold; font-size:13px'>800 Rs</span><span style='text-decoration:line-through; color:#757575;font-size:11px;margin-left:4px'>1000 Rs</span> <span style='color:#d32f2f;font-weight:bold;font-size:12px;margin-left:2px'>(- 200 Rs)</span>",
+            "sub_text": "",
             "image": "https://d3ti1kcp1zfdnq.cloudfront.net/DR_AAYUSH_GUPTA_4e79c1943a.jpg",
             "timestamp": "",
-            "booking_date":"2025-08-05",
-            "sub_text1": "Pay : 800 Rs",
-            "is_online": "0",
-            "is_physical": "1",
-            "rating": "",
-            "review": "",
             "web_link": "",
             "web_view": "0",
             "click_action": "1",
             "web_view_heading": "",
             "page_code": "5020",
             "next_page": {
-                "page_code": "web_view",
-                "data_self": "",
-                "data_heading": "SALIL PANDEY",
-                "data_url": "https://sarvodayahospital19.com/doctorpage_mobile_1/99/?token=MG12NEp3bDFQUGlNQTE4bFJwQkg1aXZzQU5pdVd0S3h4c2hBUjVYYjlYS21OTytCd1dWK2xUcEZNQXJ5QmhtTTFMWlFZVTlHVGJhUWhLUXZQajRMa1liNERtd1hlVER3YmRrN1VxTnJCYzNzaTFRcW81U0ZVcmkzNmdzTnpJM1hGYTRJK2NjbE5Ma2lzOFhFRE4ybzVBPT0=&p=96&n=c2Fydm9kYXlhLWhvc3BpdGFsLWdyZWF0ZXItbm9pZGEtd2VzdA=="
             },
             "elements": []
         },
