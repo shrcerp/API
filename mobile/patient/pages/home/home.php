@@ -1,7 +1,8 @@
 <?php
-
+    // echo $dev_url ;
 
     function get_home_data($data){
+    global $dev_url;
       $mobile = $data["data_global"]["mobile"];
       $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
 
@@ -1144,6 +1145,7 @@
     }
     function get_user_data($mobile,$selected_id){
         global $con;
+        global $dev_url;
         $sql = "SELECT * FROM `video_patient` where mobile = '$mobile'";
         $query = cj_query($sql);
         $result = ' {
@@ -1165,7 +1167,6 @@
                 "phone" : "918860611481",
                 "notification" : "1"
             },
-
             "stack_children" : [
                {
                     "title": "Hi",
@@ -1242,6 +1243,7 @@
     }
 
     function get_user_data_new($mobile,$selected_id){
+        global $dev_url;
       /*
 
       {
@@ -1275,22 +1277,22 @@
         $query = cj_query($sql);
         $result = '{
             "title": "",
-            "layout_code": "214",
+            "layout_code": "300",
             "text":"",
             "sub_text": "",
-            "layout_des": "stack",
-            "image": "",
+            "layout_des": "top_header",
+            "image": "logo.png",
             "timestamp": "10 Aug 2021",
             "web_link": "",
             "web_view": "0",
             "click_action": "1",
             "web_view_heading": "",
             "page_code": "5020",
-            "next_page": {
-                "page_code": "view_data",
-                "data_self": "T3ZhZkg3QitHellqcC9ac0NKSExpTE1pNWYvUVFoU2w3Q0plWmRVN2pZNmVKdWRPQityTE1TOFRxR3ZvUXFOOFc0b2xrdjlrdnFuYkNKdTRoeVJGN1FhRTZibHhBdm1kSE43aWhUVkNsbTdDbEZBZ1JnOGdVV3N2VTFvazlySHZlamhIRXhiWlRwT2pWN1RxZXF1NWVERmtMS2Y2OFZTZG5PVFpUaUxuS1Y3T3VKNHhTUmRtR3gwQ1pUTkFIN2VuODIyTkVNdStKZEYwVEwvYTAvbEI3L3NiYjBmWFZydFFITzZaRGovalA5a0FndEw1VjJvWTYraG9KY1J4aUVBMC9qcThMak1OeTVSZ05oc25qSXJkRmtvcXNvb0tuNkl6d3lqeVFVWW90a009",
-                "data_heading": "Sarvodaya Doctors",
-                "data_url": "https://sarvodayahospital.com/api/mobile/patient/select_hospital"
+            "next_page": {},
+            "button_list" : {
+                "whatsapp" : "918860611481",
+                "phone" : "918860611481",
+                "notification" : "1"
             },
             "stack_children" : [
                {
@@ -1313,16 +1315,7 @@
                     },
                     "elements": [],
                     "value": "0"
-                },
-                {
-                    "title": "",
-                    "subtitle": "appointment now.",
-                    "layout_code": "214",
-                    "layout_des": "text",
-                    "font_size" : "13",
-                    "font_weight" : "400"
                 }
-
             ]
         }';
 
@@ -1371,7 +1364,7 @@
         );
 
         $result["stack_children"][0]["value"] =   (string)$select_value;
-        $result["stack_children"][0]["member_id"] =   (string)$select_value;
+        // $result["stack_children"][0]["member_id"] =   (string)$select_value;
 
       //  $result["value"] =   (string)$select_value;
       //  $result["member_id"] =   (string)$select_value;

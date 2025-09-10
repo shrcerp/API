@@ -36,6 +36,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
     foreach ($api_info["layouts"] as $key => $row) {
         include "pages/$page/".$row["name"].".php"; // calling page name
         $function_name = $row["function"]; // getting function name
+        
         $a = $function_name($post_data); // calling dynamic function
         if(isset($row["is_merge"]) && $row["is_merge"]){
             $result = array_merge($result,$a);
