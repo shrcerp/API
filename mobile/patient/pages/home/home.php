@@ -1146,27 +1146,55 @@
         global $con;
         $sql = "SELECT * FROM `video_patient` where mobile = '$mobile'";
         $query = cj_query($sql);
-        $result = '{
-            "title": "Hi",
-            "layout_code": "103",
-            "layout_des": "dropdown",
+        $result = ' {
+            "title": "",
+            "layout_code": "300",
+            "text":"",
             "sub_text": "",
-            "image": "https://sarvodayahospital19.com//api/mobile/images/sarvodaya_mobile_logo.png",
-            "timestamp": "",
+            "layout_des": "top_header",
+            "image": "logo.png",
+            "timestamp": "10 Aug 2021",
             "web_link": "",
             "web_view": "0",
-            "click_action": "0",
+            "click_action": "1",
             "web_view_heading": "",
             "page_code": "5020",
-            "next_page": {
-                "page_code": "form_page",
-                "data_self": "'.$mobile.'",
-                "data_heading": "New Registration",
-                "data_url": "'.$dev_url.'patient_registration_form"
+            "next_page": {},
+            "button_list" : {
+                "whatsapp" : "918860611481",
+                "phone" : "918860611481",
+                "notification" : "1"
             },
-            "elements": [],
-            "value": "0"
-        }';
+
+            "stack_children" : [
+               {
+                    "title": "Hi",
+                    "layout_code": "103",
+                    "layout_des": "dropdown",
+                    "sub_text": "",
+                    "image": "https://sarvodayahospital19.com//api/mobile/images/male_icon.png",
+                    "timestamp": "",
+                    "web_link": "",
+                    "web_view": "0",
+                    "click_action": "0",
+                    "web_view_heading": "",
+                    "page_code": "5020",
+                    "member_id": "0",
+                    "next_page": {
+                        "page_code": "form_page",
+                        "data_self": "'.$mobile.'",
+                        "data_heading": "New Registration",
+                        "data_url": "'.$dev_url.'patient_registration_form"
+                    },
+                    "value": "0",
+                    "elements": []
+                }
+            ],
+    }   
+            
+            
+            
+            ';
 
         $result = json_decode($result,1);
 
@@ -1190,7 +1218,7 @@
                     $avatar_icon = "https://sarvodayahospital19.com//api/mobile/images/female_icon.png";
                 }
             }
-            $result["elements"][] = array(
+            $result['stack_children'][0]["elements"][] = array(
                 $i
                 ,ucwords(strtolower($row["patient_name"]))
                 ,$avatar_icon
@@ -1198,9 +1226,9 @@
             );
             $i++;
         }
-        $result["image"] = $avatar_icon;
+        $result['stack_children'][0]["image"] = $avatar_icon;
 
-        $result["elements"][] = array(
+        $result['stack_children'][0]["elements"][] = array(
             $i
               ,"New"
               ,"new"
@@ -1208,7 +1236,7 @@
 
         );
 
-        $result["value"] =   (string)$select_value;
+        $result['stack_children'][0]["value"] =   (string)$select_value;
 
         return json_encode($result);
     }
