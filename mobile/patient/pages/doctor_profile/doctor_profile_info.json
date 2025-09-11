@@ -1,0 +1,27 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [
+          {
+              "key_name" : "data_global"
+          },
+          {
+              "key_name" : "doctor_id"
+          },
+          {
+              "key_name" : "data_self"
+          }
+    ]
+    ,
+    "layouts" : [
+        {
+            "name" : "doctor_profile"
+            ,"api_type" : "run_function"
+            ,"function" : "get_doctor_data"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}
