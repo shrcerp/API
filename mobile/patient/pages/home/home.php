@@ -127,9 +127,6 @@
               $payment_booking = "";
           }
 
-
-
-          
           $switch_selection = get_user_data_new($data["data_global"]["mobile"],$data["data_global"]["id"]);
 
           $data_record = array();
