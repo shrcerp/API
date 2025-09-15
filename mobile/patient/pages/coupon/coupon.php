@@ -22,7 +22,7 @@
             exit();
         }
         $data = [
-            "discount_image" => $row['coupon_image'],
+            // "discount_image" => $row['coupon_image'],
             "discount_per" => $row['discount_per']
         ];
         return array(
