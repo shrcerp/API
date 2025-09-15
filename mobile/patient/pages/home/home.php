@@ -3,6 +3,18 @@
 
     function get_home_data($data){
     global $dev_url;
+        global $con;
+
+
+    // coupons 
+
+   
+
+
+
+
+
+
       $mobile = $data["data_global"]["mobile"];
       $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
 
@@ -61,218 +73,50 @@
                     "elements": []
                 }';
       }
-      $result = '[
 
-                        '.$switch_selection.',
 
-                        '.$video_booking.'
+       $date = date("Y-m-d");
+        $sql = "SELECT * 
+            FROM video_patient_coupon 
+            WHERE status = 1 
+            AND start_date <= '$date' 
+            AND end_date >= '$date'";
 
-                        '.$discharge.'
+    $result_data_coupon = mysqli_query($con, $sql);
+    $coupons_by_hospital = [];
 
-                       {
-            "title": "Book an Appointment",
-            "layout_code": "302",
-            "layout_des": "search_bar",
-            "sub_text": "",
-            "image": "https://d3ti1kcp1zfdnq.cloudfront.net/DR_AAYUSH_GUPTA_4e79c1943a.jpg",
-            "timestamp": "",
-            "web_link": "",
-            "web_view": "0",
-            "click_action": "1",
-            "web_view_heading": "",
-            "page_code": "5020",
-            "next_page": {
-            },
-            "elements": []
-        },
-                        {
-            "title": "Document",
-            "layout_code": "303",
-            "layout_des": "button layout",
-            "sub_text": "",
-            "image": "",
-            "timestamp": "05 Mar 2021",
-            "click_action": "1",
-            "next_page": {},
-            "elements": [
-                {
-                    "title": "My Report",
-                    "sub_text": "",
-                    "color": "#008fc5",
-                    "image": "Reports",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "'.$dev_url.'my_reports"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Book Lab Test",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "LabTest",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Booking",
-                        "data_url": "'.$dev_url.'my_booking"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Pharmacy",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "Pharma",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Prescription",
-                        "data_url": "'.$dev_url.'my_prescription"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Health Check-up",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "Healthcheckup",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Lab Report",
-                        "data_url": "'.$dev_url.'my_labReport"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Diabitic Care",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "Diabitic",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Discharge Summary",
-                        "data_url": "'.$dev_url.'my_dischargeSummary"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Homecare",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "Homecare",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Discharge Summary",
-                        "data_url": "'.$dev_url.'my_dischargeSummary"
-                    },
-                    "elements": []
+    if ($result_data_coupon && mysqli_num_rows($result_data_coupon) > 0) {
+        $all_rows = [];
+        while ($row = mysqli_fetch_assoc($result_data_coupon)) {
+            $all_rows[] = $row;
+
+            if (!empty($row['location']) && !isset($coupons_by_hospital[$row['location']])) {
+                $coupons_by_hospital[$row['location']] = []; // initialize
+            }
+        }
+
+        foreach ($all_rows as $row) {
+            $hospital = $row['location'];
+
+            if (!empty($hospital)) {
+                $coupons_by_hospital[$hospital][] = $row['coupon_image']; // flat array
+            } else {
+                // if location is null, add to all hospitals
+                foreach ($coupons_by_hospital as $hosp => $list) {
+                    $coupons_by_hospital[$hosp][] = $row['coupon_image'];
                 }
-                
-            ]
-        },
+            }
+        }
+    }
 
 
-            {
-                "title": "Document",
-                "layout_code": "109",
-                "layout_des": "button layout",
-                "sub_text": "",
-                "image": "",
-                "timestamp": "05 Mar 2021",
-                "click_action": "1",
-                "next_page": {},
-                "elements": [
-                    {
-                        "title": "My Report",
-                        "sub_text": "",
-                        "color":"#008fc5",
-                        "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663584825737.png",
-                        "click_action": "1",
-                        "next_page": {
-                            "page_code": "view_data",
-                            "data_self": "1",
-                            "data_heading": "My Reports",
-                            "data_url": "'.$dev_url.'my_reports"
-                        },
-                        "elements": []
-                    },
-                    {
-                        "title": "My Booking",
-                        "sub_text": "",
-                        "color":"#f58220",
-                        "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663651923857.png",
-                        "click_action": "1",
-                        "next_page": {
-                            "page_code": "view_data",
-                            "data_self": "1",
-                            "data_heading": "My Booking",
-                            "data_url": "'.$dev_url.'my_booking"
-                        },
-                        "elements": []
-                    },
-                    {
-                        "title": "Discharge Summary",
-                        "sub_text": "",
-                        "color":"#9fa616",
-                        "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663651858610.png",
-                        "click_action": "1",
-                        "next_page": {
-                            "page_code": "view_data",
-                            "data_self": "1",
-                            "data_heading": "Discharge Summary",
-                            "data_url": "'.$dev_url.'discharge_summary"
-                        },
-                        "elements": []
-                    }
-                    '.$mobile_form.'
-                ]
-            },
-            {
-                "title": "Our Accreditations",
-                "layout_code": "1",
-                "text":"Our Accreditations",
-                "sub_text": "Our Accreditations",
-                "layout_des": "small text",
-                "image": "",
-                "timestamp": "10 Aug 2021",
-                "web_link": "",
-                "web_view": "0",
-                "click_action": "0",
-                "web_view_heading": "",
-                "page_code": "5020",
-                "next_page": {}
-            },
-            {
-                  "title": "Our Accreditation",
-                  "layout_code": "5",
-                  "textcolor_code": "#000000",
-                  "text_fontsize": "14",
-                  "text_fontweight": "normal",
-                  "sub_text": "Sarve Santu Niramaya - Good Health for All",
-                  "layout_des": "small text",
-                  "image": "https://sarvodayahospital19.com/api/mobile/images/01_001.png",
-                  "timestamp": "10 Aug 2021",
-                  "web_link": "",
-                  "web_view": "0",
-                  "click_action": "0",
-                  "web_view_heading": "",
-                  "page_code": "5020",
-                  "next_page": {}
-              }
-        ]';
 
+
+    // print_r(json_encode($all_coupons));
+    // return;
+
+
+    
         if($data["data_global"]["mobile"]){
           $video_booking = get_video_booking_data_new($data["data_global"]["id"]);
           if($video_booking == ","){
@@ -294,8 +138,21 @@
           $data_record = encrypt_fun($data_record);
 
           $result = '[
-
-
+                {
+            "title": "Our Coupons",
+            "layout_code": "301",
+            "textcolor_code": "#000000",
+            "text_fontsize": "14",
+            "text_fontweight": "normal",
+            "sub_text": "",
+            "layout_des": "",
+            "image": "https://sarvodayahospital19.com/api/mobile/images/save20_2.png",
+            "timestamp": "10 Aug 2021",
+            "next_page": {},
+            "elements": 
+                 '.json_encode($coupons_by_hospital).'
+            
+        },
                     '.$switch_selection.',
                     '.$video_booking.'
                     '.$payment_booking.'
