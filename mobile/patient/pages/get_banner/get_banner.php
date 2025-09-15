@@ -18,7 +18,7 @@
         echo json_encode([
             "code" => 101,
             "message" => "Coupons fetched successfully",
-            "data" => $coupons
+            "result" => $coupons
         ]);
         return;
 
