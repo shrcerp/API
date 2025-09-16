@@ -83,27 +83,22 @@
             AND end_date >= '$date'";
 
     $result_data_coupon = mysqli_query($con, $sql);
-    $coupons_by_hospital = [];
-
+    $coupons_by_hospital = [
+        "sarvodaya-hospital-greater-noida-west" => [],
+        "sarvodaya-hospital-research-centre-sector-8" => []
+    ];
     if ($result_data_coupon && mysqli_num_rows($result_data_coupon) > 0) {
-        $all_rows = [];
         while ($row = mysqli_fetch_assoc($result_data_coupon)) {
-            $all_rows[] = $row;
-
-            if (!empty($row['location']) && !isset($coupons_by_hospital[$row['location']])) {
-                $coupons_by_hospital[$row['location']] = []; // initialize
-            }
-        }
-
-        foreach ($all_rows as $row) {
             $hospital = $row['location'];
+            $image = $row['coupon_image'];
 
-            if (!empty($hospital)) {
-                $coupons_by_hospital[$hospital][] = $row['coupon_image']; 
+            if ($hospital === "sarvodaya-hospital-greater-noida-west") {
+                $coupons_by_hospital["sarvodaya-hospital-greater-noida-west"][] = $image;
+            } elseif ($hospital === "sarvodaya-hospital-research-centre-sector-8") {
+                $coupons_by_hospital["sarvodaya-hospital-research-centre-sector-8"][] = $image;
             } else {
-                foreach ($coupons_by_hospital as $hosp => $list) {
-                    $coupons_by_hospital[$hosp][] = $row['coupon_image'];
-                }
+                $coupons_by_hospital["sarvodaya-hospital-greater-noida-west"][] = $image;
+                $coupons_by_hospital["sarvodaya-hospital-research-centre-sector-8"][] = $image;
             }
         }
     }
