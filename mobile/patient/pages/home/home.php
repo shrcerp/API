@@ -99,9 +99,8 @@
             $hospital = $row['location'];
 
             if (!empty($hospital)) {
-                $coupons_by_hospital[$hospital][] = $row['coupon_image']; // flat array
+                $coupons_by_hospital[$hospital][] = $row['coupon_image']; 
             } else {
-                // if location is null, add to all hospitals
                 foreach ($coupons_by_hospital as $hosp => $list) {
                     $coupons_by_hospital[$hosp][] = $row['coupon_image'];
                 }
@@ -137,8 +136,12 @@
           $data_record = encrypt_fun($data_record);
 
           $result = '[
-                {
-            "title": "Our Coupons",
+              
+                    '.$switch_selection.',
+                    '.$video_booking.'
+                    '.$payment_booking.'
+                      {
+            "title": "Our Offers",
             "layout_code": "301",
             "textcolor_code": "#000000",
             "text_fontsize": "14",
@@ -152,24 +155,7 @@
                  '.json_encode($coupons_by_hospital).'
             
         },
-                    '.$switch_selection.',
-                    '.$video_booking.'
-                    '.$payment_booking.'
-                    {
-                        "title": "Our Offers",
-                        "layout_code": "301",
-                        "textcolor_code": "#000000",
-                        "text_fontsize": "14",
-                        "text_fontweight": "normal",
-                        "sub_text": "Sarve Santu Niramaya - Good Health for All",
-                        "layout_des": "small text",
-                        "image": "https://sarvodayahospital19.com/api/mobile/images/save20_2.png",
-                        "timestamp": "10 Aug 2021",
-                        "next_page": {},
-                        "elements": [
-                            "assets/slider/slider1.jpg"
-                        ]
-                    },
+                  
                     {
             "title": "Book An Appointment",
             "layout_code": "302",
