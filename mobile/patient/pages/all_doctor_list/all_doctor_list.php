@@ -70,12 +70,13 @@
                         "title": "'.ucwords(strtolower($row["DoctorName"])).'",
                         "layout_code": "106",
                         "layout_des": "search_bar",
-                          "sub_text": "'.preg_replace('/\s+/', ' ', trim(str_replace("<br>",", ",html_entity_decode($row["CurrentDesignation"])))).'",
+                        "sub_text": "'.preg_replace('/\s+/', ' ', trim(str_replace("<br>",", ",html_entity_decode($row["CurrentDesignation"])))).'",
                         "image": "'.$row["doctor_photo"].'",
                         "timestamp": "",
                         "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",
                         "is_online":"'.$is_video.'",
                         "is_physical":"'.$is_in_person.'",
+                        "doc_id":"'.$row["gw_id"].'",
                         "rating":"",
                         "review":"",
                         "web_link": "",
@@ -84,10 +85,11 @@
                         "web_view_heading": "",
                         "page_code": "5020",
                         "next_page": {
-                            "page_code": "web_view",
+                            "page_code": "doc_profile",
                             "data_self": "",
+                            "doc_id": "'.$row["gw_id"].'",
                             "data_heading": "'.$row["DoctorName"].'",
-                            "data_url": "https://sarvodayahospital19.com/doctorpage_mobile_1/'.$row["gw_id"].'/?token='.encrypt_fun($data["data_global"]).'&p='.rand(1,100).'&n='.base64_encode($location).'"
+                            "data_url": "https://sarvodayahospital19.com/api/mobile/test/doctor_profile"
                         },
                         "elements": []
                     }';
@@ -122,6 +124,7 @@
                     "sub_text1":"'.$row["departmentName"].'",
                     "is_online":"'.$is_video.'",
                     "is_physical":"'.$is_in_person.'",
+                    "doc_id":"'.$row["doctorID"].'",
                     "rating":"",
                     "review":"",
                     "web_link": "",
@@ -130,10 +133,11 @@
                     "web_view_heading": "",
                     "page_code": "5020",
                     "next_page": {
-                        "page_code": "web_view",
+                        "page_code": "doc_profile",
                         "data_self": "",
+                        "doc_id": "'.$row["doctorID"].'",
                         "data_heading": "'.$row["fullName"].'",
-                        "data_url": "https://sarvodayahospital19.com/doctorpage_mobile_1/'.$row["doctorID"].'/?token='.encrypt_fun($data["data_global"]).'&p='.rand(1,100).'&n='.base64_encode($location).'"
+                        "data_url": "https://sarvodayahospital19.com/api/mobile/test/doctor_profile"
                     },
                     "elements": []
                 }';

@@ -129,6 +129,7 @@
                               "all_department":'.$department.',
                               "is_online":"'.$is_video.'",
                               "is_physical":"'.$is_in_person.'",
+                              "doc_id":"'.$row["gw_id"].'",
                               "rating":"",
                               "review":"",
                               "web_link": "",

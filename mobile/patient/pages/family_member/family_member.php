@@ -7,12 +7,7 @@ function get_family_member($data){
 
     $mobile      = $data["data_global"]["mobile"];
     $selected_id = isset($data["data_global"]["id"]) ? $data["data_global"]["id"] : null;
-
-    $sql = "SELECT * FROM `video_patient` WHERE mobile = '$mobile'";
-    $result_data = mysqli_query($con, $sql);
-
-
-          $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
+    $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
 
     $result = [
         "code" => "101",
