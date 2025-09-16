@@ -2,64 +2,29 @@
     // echo $dev_url ;
 
     function get_home_data($data){
-    global $dev_url;
+        global $dev_url;
         global $con;
 
+        $mobile = $data["data_global"]["mobile"];
+        $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
+        $get_tokens = get_tokens($data);
 
-    // coupons 
-
-   
-
-
-
-
-
-
-      $mobile = $data["data_global"]["mobile"];
-      $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
-
-      $video_booking = get_video_booking_data($data["data_global"]["id"]);
-      if($video_booking == ","){
-          $video_booking = "";
-      }
-      $discharge = get_discharge_data($mobile);
-      $patient_id = $data["data_global"]["id"];
-      $new_layout = '';
-      $reject_fun = get_reject_doc($patient_id);
-      $r_fun = '';
-      if(count($reject_fun[0]["elements"])){
-          $r_fun = json_encode($reject_fun[0]).",";
-      }
-      $mobile_form = '';
-      if($mobile == '99536699550'){
-          $mobile_form = '  ,{
-                "title": "Sign In",
-                "sub_text": "",
-                "color":"#FFF0F7",
-                "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663391371922.png",
-                "click_action": "1",
-                "next_page": {
-                    "page_code": "form_page",
-                    "data_self": "1",
-                    "data_heading": "Sign In",
-                    "data_url": "'.$dev_url.'form_a"
-                },
-                "elements": []
-            },{
-                  "title": "Time Out",
-                  "sub_text": "",
-                  "color":"#FFF0F7",
-                  "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663391371922.png",
-                  "click_action": "1",
-                  "next_page": {
-                      "page_code": "form_page",
-                      "data_self": "1",
-                      "data_heading": "Time Out",
-                      "data_url": "'.$dev_url.'form_time"
-                  },
-                  "elements": []
-              },{
-                    "title": "Sign Out",
+        $video_booking = get_video_booking_data($data["data_global"]["id"]);
+        if($video_booking == ","){
+            $video_booking = "";
+        }
+        $discharge = get_discharge_data($mobile);
+        $patient_id = $data["data_global"]["id"];
+        $new_layout = '';
+        $reject_fun = get_reject_doc($patient_id);
+        $r_fun = '';
+        if(count($reject_fun[0]["elements"])){
+            $r_fun = json_encode($reject_fun[0]).",";
+        }
+        $mobile_form = '';
+        if($mobile == '99536699550'){
+            $mobile_form = '  ,{
+                    "title": "Sign In",
                     "sub_text": "",
                     "color":"#FFF0F7",
                     "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663391371922.png",
@@ -67,15 +32,41 @@
                     "next_page": {
                         "page_code": "form_page",
                         "data_self": "1",
-                        "data_heading": "Sign Out",
-                        "data_url": "'.$dev_url.'form_sign"
+                        "data_heading": "Sign In",
+                        "data_url": "'.$dev_url.'form_a"
                     },
                     "elements": []
-                }';
-      }
+                },{
+                    "title": "Time Out",
+                    "sub_text": "",
+                    "color":"#FFF0F7",
+                    "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663391371922.png",
+                    "click_action": "1",
+                    "next_page": {
+                        "page_code": "form_page",
+                        "data_self": "1",
+                        "data_heading": "Time Out",
+                        "data_url": "'.$dev_url.'form_time"
+                    },
+                    "elements": []
+                },{
+                        "title": "Sign Out",
+                        "sub_text": "",
+                        "color":"#FFF0F7",
+                        "image": "https://www.copperjam.com/admin/mobile_prototype/data/app/1663391371922.png",
+                        "click_action": "1",
+                        "next_page": {
+                            "page_code": "form_page",
+                            "data_self": "1",
+                            "data_heading": "Sign Out",
+                            "data_url": "'.$dev_url.'form_sign"
+                        },
+                        "elements": []
+                    }';
+        }
 
 
-       $date = date("Y-m-d");
+        $date = date("Y-m-d");
         $sql = "SELECT * 
             FROM video_patient_coupon 
             WHERE status = 1 
@@ -130,44 +121,46 @@
           $data_record["mobile"] = $data["data_global"]["mobile"];
           $data_record = encrypt_fun($data_record);
 
+
+
           $result = '[
-              
+
                     '.$switch_selection.',
                     '.$video_booking.'
                     '.$payment_booking.'
-                      {
-            "title": "Our Offers",
-            "layout_code": "301",
-            "textcolor_code": "#000000",
-            "text_fontsize": "14",
-            "text_fontweight": "normal",
-            "sub_text": "",
-            "layout_des": "",
-            "image": "https://sarvodayahospital19.com/api/mobile/images/save20_2.png",
-            "timestamp": "10 Aug 2021",
-            "next_page": {},
-            "elements": 
-                 '.json_encode($coupons_by_hospital).'
-            
-        },
+                    {
+                        "title": "Our Offers",
+                        "layout_code": "301",
+                        "textcolor_code": "#000000",
+                        "text_fontsize": "14",
+                        "text_fontweight": "normal",
+                        "sub_text": "",
+                        "layout_des": "",
+                        "image": "https://sarvodayahospital19.com/api/mobile/images/save20_2.png",
+                        "timestamp": "10 Aug 2021",
+                        "next_page": {},
+                        "elements": 
+                            '.json_encode($coupons_by_hospital).'
+                        
+                    },
                   
                     {
-            "title": "Book An Appointment",
-            "layout_code": "302",
-            "layout_des": "search_bar",
-            "sub_text": "",
-            "image": "https://d3ti1kcp1zfdnq.cloudfront.net/DR_AAYUSH_GUPTA_4e79c1943a.jpg",
-            "timestamp": "",
-            "web_link": "",
-            "web_view": "0",
-            "click_action": "1",
-            "web_view_heading": "",
-            "page_code": "5020",
-            "next_page": {
-            },
-            "elements": []
-        },
-                     {
+                        "title": "Book An Appointment",
+                        "layout_code": "302",
+                        "layout_des": "search_bar",
+                        "sub_text": "",
+                        "image": "https://d3ti1kcp1zfdnq.cloudfront.net/DR_AAYUSH_GUPTA_4e79c1943a.jpg",
+                        "timestamp": "",
+                        "web_link": "",
+                        "web_view": "0",
+                        "click_action": "1",
+                        "web_view_heading": "",
+                        "page_code": "5020",
+                        "next_page": {
+                        },
+                        "elements": []
+                    },
+                    {
                       "title": "Document",
                       "layout_code": "303",
                       "layout_des": "button layout",
@@ -271,7 +264,7 @@
 
 
                       ]
-                  },
+                    },
                    {
                         "title": "Health Insights",
                         "layout_code": "304",
@@ -289,205 +282,211 @@
 
 
                     {
-            "title": "Other Services",
-            "layout_code": "305",
-            "textcolor_code": "#000000",
-            "text_fontsize": "14",
-            "text_fontweight": "normal",
-            "sub_text": "",
-            "layout_des": "horizontal scroll",
-            "image": "",
-            "timestamp": "10 Aug 2021",
-            "next_page": {},
-            "elements": [
-                {
-                    "title": "My Bills",
-                    "sub_text": "",
-                    "color": "#008fc5",
-                    "image": "Bills",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "title": "Other Services",
+                        "layout_code": "305",
+                        "textcolor_code": "#000000",
+                        "text_fontsize": "14",
+                        "text_fontweight": "normal",
+                        "sub_text": "",
+                        "layout_des": "horizontal scroll",
+                        "image": "",
+                        "timestamp": "10 Aug 2021",
+                        "next_page": {},
+                        "elements": [
+                            {
+                                "title": "My Bills",
+                                "sub_text": "",
+                                "color": "#008fc5",
+                                "image": "Bills",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "Medical Reports",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "Records",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Booking",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "My Consent",
+                                "sub_text": "",
+                                "color": "#008fc5",
+                                "image": "Myconcents",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "e-KYC",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "EKVYC",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Booking",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "Attendant Pass",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "AttendantPass",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Booking",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                                },
+                                "elements": []
+                            }
+                        ]
                     },
-                    "elements": []
-                },
-                {
-                    "title": "Medical Reports",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "Records",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                    {
+                        "title": "Upcoming Update",
+                        "layout_code": "306",
+                        "textcolor_code": "#000000",
+                        "text_fontsize": "14",
+                        "text_fontweight": "normal",
+                        "sub_text": "",
+                        "layout_des": "horizontal scroll big",
+                        "image": "",
+                        "timestamp": "10 Aug 2021",
+                        "next_page": {},
+                        "elements": [
+                            {
+                                "title": "",
+                                "sub_text": "",
+                                "color": "#008fc5",
+                                "image": "",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Booking",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "",
+                                "sub_text": "",
+                                "color": "#008fc5",
+                                "image": "",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Booking",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                                },
+                                "elements": []
+                            }
+                        ]
                     },
-                    "elements": []
-                },
-                {
-                    "title": "My Consent",
-                    "sub_text": "",
-                    "color": "#008fc5",
-                    "image": "Myconcents",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "e-KYC",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "EKVYC",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Attendant Pass",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "AttendantPass",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
-                    },
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "title": "Upcoming Update",
-            "layout_code": "306",
-            "textcolor_code": "#000000",
-            "text_fontsize": "14",
-            "text_fontweight": "normal",
-            "sub_text": "",
-            "layout_des": "horizontal scroll big",
-            "image": "",
-            "timestamp": "10 Aug 2021",
-            "next_page": {},
-            "elements": [
-                {
-                    "title": "",
-                    "sub_text": "",
-                    "color": "#008fc5",
-                    "image": "",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "",
-                    "sub_text": "",
-                    "color": "#008fc5",
-                    "image": "",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "",
-                    "sub_text": "",
-                    "color": "#f58220",
-                    "image": "",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
-                    },
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "title": "Blogs",
-            "layout_code": "307",
-            "textcolor_code": "#000000",
-            "text_fontsize": "14",
-            "text_fontweight": "normal",
-            "sub_text": "",
-            "layout_des": "blog card",
-            "image": "",
-            "timestamp": "10 Aug 2021",
-            "next_page": {},
-            "elements": [
-                {
-                    "title": "Dr. Dinesh Pendharkar",
-                    "sub_title": "Cancer Care",
-                    "body": "Beating Cancer with Modern Medicine: Latest Therapies, Timely Detection and Real Hope",
-                    "sub_text": "Read More",
-                    "color": "#008fc5",
-                    "image": "blog_image",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
-                    },
-                    "elements": []
-                },
-                {
-                    "title": "Dr. Dinesh Pendharkar",
-                    "sub_title": "Cancer Care",
-                    "body": "Beating Cancer with Modern Medicine: Latest Therapies, Timely Detection and Real Hope",
-                    "sub_text": "Read More",
-                    "color": "#008fc5",
-                    "image": "blog_image",
-                    "click_action": "1",
-                    "next_page": {
-                        "page_code": "view_data",
-                        "data_self": "1",
-                        "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
-                    },
-                    "elements": []
-                }
-            ]
-        }
+                    {
+                        "title": "Blogs",
+                        "layout_code": "307",
+                        "textcolor_code": "#000000",
+                        "text_fontsize": "14",
+                        "text_fontweight": "normal",
+                        "sub_text": "",
+                        "layout_des": "blog card",
+                        "image": "",
+                        "timestamp": "10 Aug 2021",
+                        "next_page": {},
+                        "elements": [
+                            {
+                                "title": "Dr. Dinesh Pendharkar",
+                                "sub_title": "Cancer Care",
+                                "body": "Beating Cancer with Modern Medicine: Latest Therapies, Timely Detection and Real Hope",
+                                "sub_text": "Read More",
+                                "color": "#008fc5",
+                                "image": "blog_image",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "Dr. Dinesh Pendharkar",
+                                "sub_title": "Cancer Care",
+                                "body": "Beating Cancer with Modern Medicine: Latest Therapies, Timely Detection and Real Hope",
+                                "sub_text": "Read More",
+                                "color": "#008fc5",
+                                "image": "blog_image",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                                },
+                                "elements": []
+                            }
+                        ]
+                    }
+
+       
+  '.$get_tokens.' 
+
+
+
                  
               ]';
 
@@ -1342,6 +1341,176 @@
 
 
     }
+
+
+
+    function get_tokens($data){
+        $mrn = $data['data_global']['mrn'];
+        $mrn_sql = "";
+        if (!empty($data['data_self']['location'])) {
+            $location = $data["data_self"]["location"];
+            if ($location == 'sarvodaya-hospital-greater-noida-west') {
+                $mrn_sql = "AND b.mrn_nodia = '$mrn'";
+            } else {
+                $mrn_sql = "AND b.mrn_no = '$mrn'";
+            }
+        } else {
+            $mrn_sql = "AND (
+                (b.mrn_no IS NOT NULL AND b.mrn_no != '' AND TRIM(b.mrn_no) = '$mrn')
+                OR
+                ((b.mrn_no IS NULL OR b.mrn_no = '') AND TRIM(b.mrn_nodia) = '$mrn')
+            )";
+        }
+
+        $today_date = date("Y-m-d");
+    
+        $sql = "SELECT a.booking_from, a.booking_to, a.booking_type, a.is_video_start, a.booking_date,a.amount, a.interest, a.id, a.status, a.created_on, a.appointmentTokenNumber, a.reference_id, b.prefix, b.patient_name, b.mrn_no, b.gender, b.dob, b.address, c.complaint, c.experiencing_since, c.past_history, c.sugar, c.bp, c.body_temperature, c.spo, d.DoctorName AS doc_name, d.gw_id, d.doctor_photo AS profile, d.mednet_DepartmentName, d.CurrentDesignation AS designation FROM video_patient_transaction a INNER JOIN video_patient b ON b.id = a.patient_id LEFT JOIN video_calling_booking_extra c ON c.booking_id = a.id INNER JOIN gw_doctor_info d ON d.gw_id = a.doctor_id WHERE a.status = '3' $mrn_sql AND a.booking_date >= '$today_date' ORDER BY a.id DESC";
+
+        $query = cj_query($sql);
+        if (!$query || mysqli_num_rows($query) == 0) {
+            return "";
+        }
+
+        
+
+        $token_json = [];
+        while ($row = cj_fetch_array($query)) {
+         
+
+     
+        
+            $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
+            $data_url = "https://sarvodayahospital19.com/admin/N/R?token=" . base64_encode($row["id"]);
+            
+
+            $token_json[] = [
+                "title" => ucwords(strtolower($row["doc_name"])),
+                "layout_code" => 308,
+                "appointment_time" => date("h:i a",strtotime($row["booking_from"])),
+                "appointment_date" => date("d M Y",strtotime($row["booking_date"])),
+                "appointment_token" => $row['appointmentTokenNumber'],
+                "doctor" => $row['doc_name'],
+                "nursing_token" => "",
+                "lab_token" => "",
+                "radiology_token" => "",
+                "paid_amount" => $row["amount"],
+            
+                "layout_des" => "search_bar",
+                "sub_text" => "",
+                "image" => $row["profile"],
+                "timestamp" => "",
+                "sub_text1" => html_entity_decode($row["mednet_DepartmentName"]),
+                "is_online" => "0",
+                "is_physical" => "1",
+                "rating" => "",
+                "review" => "",
+                "web_link" => "",
+                "web_view" => "0",
+                "click_action" => "1",
+                "web_view_heading" => "",
+                "page_code" => "5020",
+                "next_page" => [
+                    "page_code" => "web_view",
+                    "data_self" => "",
+                    "data_heading" => $row["patient_name"],
+                    "data_url" => $data_url
+                ],
+                "elements" => []
+            ];
+        }
+
+    
+        
+
+            return ',' . json_encode($token_json);
+    }
+
+    // function get_tokens($data) {
+    //     $mrn = $data['data_global']['mrn'];
+    //     $mrn_sql = "";
+
+    //     if (!empty($data['data_self']['location'])) {
+    //         $location = $data["data_self"]["location"];
+    //         if ($location == 'sarvodaya-hospital-greater-noida-west') {
+    //             $mrn_sql = "AND b.mrn_nodia = '$mrn'";
+    //         } else {
+    //             $mrn_sql = "AND b.mrn_no = '$mrn'";
+    //         }
+    //     } else {
+    //         $mrn_sql = "AND (
+    //             (b.mrn_no IS NOT NULL AND b.mrn_no != '' AND TRIM(b.mrn_no) = '$mrn')
+    //             OR
+    //             ((b.mrn_no IS NULL OR b.mrn_no = '') AND TRIM(b.mrn_nodia) = '$mrn')
+    //         )";
+    //     }
+
+    //     $today_date = date("Y-m-d");
+
+    //     $sql = "SELECT a.booking_from, a.booking_to, a.booking_type, a.is_video_start, a.booking_date,
+    //                 a.amount, a.interest, a.id, a.status, a.created_on, a.appointmentTokenNumber,
+    //                 a.reference_id, b.prefix, b.patient_name, b.mrn_no, b.gender, b.dob, b.address,
+    //                 c.complaint, c.experiencing_since, c.past_history, c.sugar, c.bp, c.body_temperature,
+    //                 c.spo, d.DoctorName AS doc_name, d.gw_id, d.doctor_photo AS profile,
+    //                 d.mednet_DepartmentName, d.CurrentDesignation AS designation
+    //             FROM video_patient_transaction a
+    //             INNER JOIN video_patient b ON b.id = a.patient_id
+    //             LEFT JOIN video_calling_booking_extra c ON c.booking_id = a.id
+    //             INNER JOIN gw_doctor_info d ON d.gw_id = a.doctor_id
+    //             WHERE a.status = '3' $mrn_sql AND a.booking_date >= '$today_date'
+    //             ORDER BY a.id DESC";
+
+    //     $query = cj_query($sql);
+
+    //     if (!$query || mysqli_num_rows($query) == 0) {
+    //         return ""; // nothing to add
+    //     }
+
+    //     $token_json = [];
+    //     while ($row = cj_fetch_array($query)) {
+    //         $data_url = "https://sarvodayahospital19.com/admin/N/R?token=" . base64_encode($row["id"]);
+
+    //         $token_json[] = [
+    //             "title" => ucwords(strtolower($row["doc_name"])),
+    //             "layout_code" => 308,
+    //             "appointment_time" => date("h:i a", strtotime($row["booking_from"])),
+    //             "appointment_date" => date("d M Y", strtotime($row["booking_date"])),
+    //             "appointment_token" => $row['appointmentTokenNumber'],
+    //             "doctor" => $row['doc_name'],
+    //             "nursing_token" => "",
+    //             "lab_token" => "",
+    //             "radiology_token" => "",
+    //             "paid_amount" => $row["amount"],
+    //             "layout_des" => "search_bar",
+    //             "sub_text" => "",
+    //             "image" => $row["profile"],
+    //             "timestamp" => "",
+    //             "sub_text1" => html_entity_decode($row["mednet_DepartmentName"]),
+    //             "is_online" => "0",
+    //             "is_physical" => "1",
+    //             "rating" => "",
+    //             "review" => "",
+    //             "web_link" => "",
+    //             "web_view" => "0",
+    //             "click_action" => "1",
+    //             "web_view_heading" => "",
+    //             "page_code" => "5020",
+    //             "next_page" => [
+    //                 "page_code" => "web_view",
+    //                 "data_self" => "",
+    //                 "data_heading" => $row["patient_name"],
+    //                 "data_url" => $data_url
+    //             ],
+    //             "elements" => []
+    //         ];
+    //     }
+
+    //     $result = [
+    //         "token_details" => $token_json
+    //     ];
+
+    //     return ',' . json_encode($result); 
+    // }
+
   
 
   
