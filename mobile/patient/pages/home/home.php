@@ -68,10 +68,8 @@
 
         $date = date("Y-m-d");
         $sql = "SELECT * 
-            FROM video_patient_coupon 
-            WHERE status = 1 
-            AND start_date <= '$date' 
-            AND end_date >= '$date'";
+            FROM video_patient_banner 
+            WHERE status = 1 ";
 
     $result_data_coupon = mysqli_query($con, $sql);
     $coupons_by_hospital = [
@@ -81,7 +79,7 @@
     if ($result_data_coupon && mysqli_num_rows($result_data_coupon) > 0) {
         while ($row = mysqli_fetch_assoc($result_data_coupon)) {
             $hospital = $row['location'];
-            $image = $row['coupon_image'];
+            $image = "https://sarvodayahospital19.com/admin/data/app/".$row['banner_image'];
 
             if ($hospital === "sarvodaya-hospital-greater-noida-west") {
                 $coupons_by_hospital["sarvodaya-hospital-greater-noida-west"][] = $image;
@@ -758,12 +756,13 @@
           $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
 
           $r = '{
-                    "title": "'.ucwords(strtolower($row["doc_name"])).'\nOPD Token No. : '.$row["appointmentTokenNumber"].'",
-                    "layout_code": "220",
-                    "layout_des": "search_bar",
+                    "title": "'.ucwords(strtolower($row["doc_name"])).'",
+                    "layout_code": "308",
+                    "layout_des": "booking_card",
                     "sub_text": "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h:i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
                     "image": "'.$row["profile"].'",
                     "timestamp": "",
+                    "appointment_token":"OPD Token No. : '.$row["appointmentTokenNumber"].'",
                     "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",
                     "is_online":"0",
                     "is_physical":"1",
@@ -775,7 +774,7 @@
                     "web_view_heading": "",
                     "page_code": "5020",
                     "next_page": {
-                        "page_code": "web_view",
+                        "page_code": "pdf_view",
                         "data_self": "",
                         "data_heading": "'.$row["patient_name"].'",
                         "data_url": "'.$data_url.'"
