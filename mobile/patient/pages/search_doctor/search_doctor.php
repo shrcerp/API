@@ -12,8 +12,6 @@
 
        }
     //    print_r($location);
-
-
        $search = htmlentities($search, ENT_QUOTES);
        $search = preg_replace('/^Dr[.\s]+/i', '', $search);
        print_r($search);
@@ -140,8 +138,9 @@
                               "next_page": {
                                   "page_code": "web_view",
                                   "data_self": "",
+                                  "doc_id": "'.$row["gw_id"].'",
                                   "data_heading": "'.$row["DoctorName"].'",
-                                  "data_url": "https://sarvodayahospital19.com/doctorpage_mobile_1/'.$row["gw_id"].'/?token='.encrypt_fun($data["data_global"]).'&p='.rand(1,100).'&n='.base64_encode($location).'"
+                                  "data_url": "https://sarvodayahospital19.com/api/mobile/test/doctor_profile"
                               },
                               "elements": []
                           }';

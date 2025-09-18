@@ -37,6 +37,7 @@
             "next_page": {
                 "page_code": "view_data",
                 "data_self": "'.$data_self_8.'",
+                "data_head":"sarvodaya-hospital-research-centre-sector-8",
                 "data_heading": "Sarvodaya Hospital, Sector-8",
                 "data_url": "https://sarvodayahospital19.com/api/mobile/patient/all_doctor_list"
             }
@@ -58,6 +59,7 @@
               "next_page": {
                   "page_code": "view_data",
                   "data_self": "'.$data_self_nodia.'",
+                  "data_head":"sarvodaya-hospital-greater-noida-west",
                   "data_heading": "Sarvodaya Hospital, Greater Noida",
                   "data_url": "https://sarvodayahospital19.com/api/mobile/patient/all_doctor_list"
               }
