@@ -136,7 +136,7 @@
                               "web_view_heading": "",
                               "page_code": "5020",
                               "next_page": {
-                                  "page_code": "web_view",
+                                  "page_code": "doc_profile",
                                   "data_self": "",
                                   "doc_id": "'.$row["gw_id"].'",
                                   "data_heading": "'.$row["DoctorName"].'",
