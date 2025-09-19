@@ -711,6 +711,7 @@
 
       $today_date = date("Y-m-d");
       $sql = "select
+      a.loc,
             a.booking_from
             ,a.booking_to
             ,a.booking_type
@@ -762,6 +763,7 @@
                     "sub_text": "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h:i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
                     "image": "'.$row["profile"].'",
                     "timestamp": "",
+                    "hospital_loc"     => $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad",
                     "appointment_token":"OPD Token No. : '.$row["appointmentTokenNumber"].'",
                     "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",
                     "is_online":"0",
@@ -1384,16 +1386,20 @@
 
             $token_json[] = [
                 "title" => ucwords(strtolower($row["doc_name"])),
-                "layout_code" => 308,
+                "layout_code" => "308",
                 "appointment_time" => date("h:i a",strtotime($row["booking_from"])),
                 "appointment_date" => date("d M Y",strtotime($row["booking_date"])),
+                "hospital_loc"     => $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad",
+                "appointment_loc" => $row['doctor_room'],
                 "appointment_token" => $row['appointmentTokenNumber'],
                 "doctor" => $row['doc_name'],
-                "nursing_token" => "",
-                "lab_token" => "",
+                "nursing_loc" => $row['nursing_station'],
+                "nursing_token" => $row['nursingtoken'],
+                "radiology_loc" => "",
                 "radiology_token" => "",
+                "lab_loc" => "",
+                "lab_token" => "",
                 "paid_amount" => $row["amount"],
-            
                 "layout_des" => "search_bar",
                 "sub_text" => "",
                 "image" => $row["profile"],
