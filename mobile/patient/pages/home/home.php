@@ -755,7 +755,7 @@
 
           $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
           $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
-
+          $loc = $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad"
           $r = '{
                     "title": "'.ucwords(strtolower($row["doc_name"])).'",
                     "layout_code": "308",
@@ -763,7 +763,7 @@
                     "sub_text": "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h:i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
                     "image": "'.$row["profile"].'",
                     "timestamp": "",
-                    "hospital_loc"     => $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad",
+                    "hospital_loc" : "'.$loc.'",
                     "appointment_token":"OPD Token No. : '.$row["appointmentTokenNumber"].'",
                     "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",
                     "is_online":"0",
@@ -1365,7 +1365,7 @@
 
         $today_date = date("Y-m-d");
     
-        $sql = "SELECT a.booking_from, a.booking_to, a.booking_type, a.is_video_start, a.booking_date,a.amount, a.interest, a.id, a.status, a.created_on, a.appointmentTokenNumber, a.reference_id, b.prefix, b.patient_name, b.mrn_no, b.gender, b.dob, b.address, c.complaint, c.experiencing_since, c.past_history, c.sugar, c.bp, c.body_temperature, c.spo, d.DoctorName AS doc_name, d.gw_id, d.doctor_photo AS profile, d.mednet_DepartmentName, d.CurrentDesignation AS designation FROM video_patient_transaction a INNER JOIN video_patient b ON b.id = a.patient_id LEFT JOIN video_calling_booking_extra c ON c.booking_id = a.id INNER JOIN gw_doctor_info d ON d.gw_id = a.doctor_id WHERE a.status = '3' $mrn_sql AND a.booking_date >= '$today_date' ORDER BY a.id DESC";
+        $sql = "SELECT a.loc, a.doctor_id, a.booking_from, a.booking_to, a.booking_type, a.is_video_start, a.booking_date,a.amount, a.interest, a.id, a.status, a.created_on, a.appointmentTokenNumber, a.reference_id, b.prefix, b.patient_name, b.mrn_no, b.gender, b.dob, b.address, c.complaint, c.experiencing_since, c.past_history, c.sugar, c.bp, c.body_temperature, c.spo, d.DoctorName AS doc_name, d.gw_id, d.doctor_photo AS profile, d.mednet_DepartmentName, d.CurrentDesignation AS designation FROM video_patient_transaction a INNER JOIN video_patient b ON b.id = a.patient_id LEFT JOIN video_calling_booking_extra c ON c.booking_id = a.id INNER JOIN gw_doctor_info d ON d.gw_id = a.doctor_id WHERE a.status = '3' $mrn_sql AND a.booking_date >= '$today_date' ORDER BY a.id DESC";
 
         $query = cj_query($sql);
         if (!$query || mysqli_num_rows($query) == 0) {
