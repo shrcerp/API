@@ -751,42 +751,43 @@
         $query = cj_query($sql);
         $p = '';
 
-        while($row = cj_fetch_array($query)){
+        // while($row = cj_fetch_array($query)){
 
-          $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
-          $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
-          $loc = $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad"
-          $r = '{
-                    "title": "'.ucwords(strtolower($row["doc_name"])).'",
-                    "layout_code": "308",
-                    "layout_des": "booking_card",
-                    "sub_text": "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h:i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
-                    "image": "'.$row["profile"].'",
-                    "timestamp": "",
-                    "hospital_loc" : "'.$loc.'",
-                    "appointment_token":"OPD Token No. : '.$row["appointmentTokenNumber"].'",
-                    "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",
-                    "is_online":"0",
-                    "is_physical":"1",
-                    "rating":"",
-                    "review":"",
-                    "web_link": "",
-                    "web_view": "0",
-                    "click_action": "1",
-                    "web_view_heading": "",
-                    "page_code": "5020",
-                    "next_page": {
-                        "page_code": "pdf_view",
-                        "data_self": "",
-                        "data_heading": "'.$row["patient_name"].'",
-                        "data_url": "'.$data_url.'"
-                    },
-                    "elements": []
-                },';
-            $p .= $r;
+        //   $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
+        //   $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
+        //   $loc = $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad"
+        // //   $r = '';
+        //   $r = '{
+        //             "title"=> "'.ucwords(strtolower($row["doc_name"])).'",
+        //             "layout_code"=> "308",
+        //             "layout_des"=> "booking_card",
+        //             "sub_text"=> "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h=>i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
+        //             "image"=> "'.$row["profile"].'",
+        //             "timestamp"=> "",
+        //             "hospital_loc" => "'.$loc.'",
+        //             "appointment_token"=>"OPD Token No. : '.$row["appointmentTokenNumber"].'",
+        //             "sub_text1"=>"'.html_entity_decode($row["mednet_DepartmentName"]).'",
+        //             "is_online"=>"0",
+        //             "is_physical"=>"1",
+        //             "rating"=>"",
+        //             "review"=>"",
+        //             "web_link"=> "",
+        //             "web_view"=> "0",
+        //             "click_action"=> "1",
+        //             "web_view_heading"=> "",
+        //             "page_code"=> "5020",
+        //             "next_page"=> {
+        //                 "page_code"=> "pdf_view",
+        //                 "data_self"=> "",
+        //                 "data_heading"=> "'.$row["patient_name"].'",
+        //                 "data_url"=> "'.$data_url.'"
+        //             },
+        //             "elements"=> []
+        //         },';
+        //     $p .= $r;
 
 
-        }
+        // }
 
         return $p;
 
@@ -1393,6 +1394,7 @@
                 "appointment_loc" => $row['doctor_room'],
                 "appointment_token" => $row['appointmentTokenNumber'],
                 "doctor" => $row['doc_name'],
+                "doctor_id" => $row['doctor_id'],
                 "nursing_loc" => $row['nursing_station'],
                 "nursing_token" => $row['nursingtoken'],
                 "radiology_loc" => "",
