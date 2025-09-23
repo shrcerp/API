@@ -137,7 +137,7 @@
                               "page_code": "5020",
                               "next_page": {
                                   "page_code": "doc_profile",
-                                  "data_self": "",
+                                  "data_self": "'.$location.'",
                                   "doc_id": "'.$row["gw_id"].'",
                                   "data_heading": "'.$row["DoctorName"].'",
                                   "data_url": "https://sarvodayahospital19.com/api/mobile/test/doctor_profile"
