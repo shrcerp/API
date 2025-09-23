@@ -119,13 +119,32 @@
           $data_record["mobile"] = $data["data_global"]["mobile"];
           $data_record = encrypt_fun($data_record);
 
-
-
           $result = '[
+          {
+            "title": "",
+            "layout_code": "300",
+            "text":"",
+            "sub_text": "",
+            "layout_des": "top_header",
+            "image": "logo.png",
+            "timestamp": "10 Aug 2021",
+            "web_link": "",
+            "web_view": "0",
+            "click_action": "1",
+            "web_view_heading": "",
+            "page_code": "5020",
+            "next_page": {},
+            "button_list" : {
+                "whatsapp" : "918860611481",
+                "phone" : "918860611481",
+                "notification" : "1"
+            }
+            },
 
                     '.$switch_selection.',
                     '.$video_booking.'
                     '.$payment_booking.'
+                    '.$discharge.'
                     {
                         "title": "Our Offers",
                         "layout_code": "301",
@@ -546,7 +565,7 @@
       if($mobile != '9953669955'){
           //return '';
       }
-      return '';
+    //   return '';
       $curl = curl_init();
 
       curl_setopt_array($curl, array(
@@ -1096,80 +1115,32 @@
 
     function get_user_data_new($mobile,$selected_id){
         global $dev_url;
-      /*
-
-      {
-          "title": "Our Medical Experts are here for you.",
-          "subtitle": "",
-          "layout_code": "214",
-          "layout_des": "text",
-          "font_size" : "16",
-          "font_weight" : "400"
-      },
-      {
-          "title": "Get quality medical care and treatment with us",
-          "subtitle": "treatment with us.",
-          "layout_code": "214",
-          "layout_des": "text",
-          "font_size" : "20",
-          "font_weight" : "700"
-      },
-      {
-          "title": "Find the required doctor and schedule your appointment now.",
-          "subtitle": "appointment now.",
-          "layout_code": "214",
-          "layout_des": "text",
-          "font_size" : "13",
-          "font_weight" : "400"
-      },
-
-      */
+      
         global $con;
         $sql = "SELECT * FROM `video_patient` where mobile = '$mobile'";
         $query = cj_query($sql);
-        $result = '{
-            "title": "",
-            "layout_code": "300",
-            "text":"",
-            "sub_text": "",
-            "layout_des": "top_header",
-            "image": "logo.png",
-            "timestamp": "10 Aug 2021",
-            "web_link": "",
-            "web_view": "0",
-            "click_action": "1",
-            "web_view_heading": "",
-            "page_code": "5020",
-            "next_page": {},
-            "button_list" : {
-                "whatsapp" : "918860611481",
-                "phone" : "918860611481",
-                "notification" : "1"
-            },
-            "stack_children" : [
-               {
-                    "title": "Hi",
-                    "layout_code": "103",
-                    "layout_des": "dropdown",
-                    "sub_text": "",
-                    "image": "https://sarvodayahospital19.com//api/mobile/images/male_icon.png",
-                    "timestamp": "",
-                    "web_link": "",
-                    "web_view": "0",
-                    "click_action": "0",
-                    "web_view_heading": "",
-                    "page_code": "5020",
-                    "next_page": {
-                        "page_code": "form_page",
-                        "data_self": "9953669955",
-                        "data_heading": "New Registration",
-                        "data_url": "'.$dev_url.'patient_registration_form"
-                    },
-                    "elements": [],
-                    "value": "0"
-                }
-            ]
-        }';
+        $result = '
+            {
+                "title": "Hi",
+                "layout_code": "103",
+                "layout_des": "dropdown",
+                "sub_text": "",
+                "image": "https://sarvodayahospital19.com//api/mobile/images/male_icon.png",
+                "timestamp": "",
+                "web_link": "",
+                "web_view": "0",
+                "click_action": "0",
+                "web_view_heading": "",
+                "page_code": "5020",
+                "next_page": {
+                    "page_code": "form_page",
+                    "data_self": "9953669955",
+                    "data_heading": "New Registration",
+                    "data_url": "'.$dev_url.'patient_registration_form"
+                },
+                "elements": [],
+                "value": "0"
+            }';
 
         $result = json_decode($result,1);
 
@@ -1197,7 +1168,7 @@
             }else{
               $avatar_icon = "https://sarvodayahospital19.com//api/mobile/images/sarvodaya_mobile_logo.png";
             }
-            $result["stack_children"][0]["elements"][] = array(
+            $result["elements"][] = array(
                 $i
                 ,ucwords(strtolower($row["patient_name"]))
                 ,$avatar_icon
@@ -1205,9 +1176,9 @@
             );
             $i++;
         }
-        $result["stack_children"][0]["image"] = $avatar_icon;
+        $result["image"] = $avatar_icon;
 
-        $result["stack_children"][0]["elements"][] = array(
+        $result["elements"][] = array(
             $i
               ,"New"
               ,"new"
@@ -1215,7 +1186,7 @@
 
         );
 
-        $result["stack_children"][0]["value"] =   (string)$select_value;
+        $result["value"] =   (string)$select_value;
         // $result["stack_children"][0]["member_id"] =   (string)$select_value;
 
       //  $result["value"] =   (string)$select_value;
