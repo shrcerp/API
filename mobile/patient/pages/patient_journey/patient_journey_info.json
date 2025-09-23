@@ -1,0 +1,24 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [
+        {
+            "key_name" : "data_global"
+        },
+        {
+            "key_name" : "data_self"
+        }
+    ]
+    ,
+    "layouts" : [
+        {
+            "name" : "patient_journey"
+            ,"api_type" : "run_function"
+            ,"function" : "patient_journey"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

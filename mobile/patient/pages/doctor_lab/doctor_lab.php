@@ -28,6 +28,7 @@
             return ['error' => $error_msg];
         }
         curl_close($curl);
+        
         return array(
             "code" => "101",
             "message" => "data fetched successfully",

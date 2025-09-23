@@ -142,6 +142,7 @@
             },
 
                     '.$switch_selection.',
+                    
                     '.$video_booking.'
                     '.$payment_booking.'
                     '.$discharge.'
@@ -498,12 +499,6 @@
                             }
                         ]
                     }
-
-       
-  '.$get_tokens.' 
-
-
-
                  
               ]';
 
@@ -663,7 +658,7 @@
             from video_patient_transaction a
             inner join video_patient b on b.id = a.patient_id
             left join video_calling_booking_extra c on c.booking_id = a.id
-            inner join gw_doctor_info d on d.id = a.doctor_id
+            inner join gw_doctor_info d on d.gw_id = a.doctor_id
             where a.patient_id = '$patient_id' and a.status = '3' and a.booking_type = '2' and booking_date >= '$today_date' ORDER BY a.id  DESC";
 
         $query = cj_query($sql);
@@ -730,7 +725,8 @@
 
       $today_date = date("Y-m-d");
       $sql = "select
-      a.loc,
+      a.loc,a.doctor_id,
+      a.doctor_room,a.nursing_station,a.nursingtoken,
             a.booking_from
             ,a.booking_to
             ,a.booking_type
@@ -770,43 +766,52 @@
         $query = cj_query($sql);
         $p = '';
 
-        // while($row = cj_fetch_array($query)){
+        while($row = cj_fetch_array($query)){
 
-        //   $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
-        //   $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
-        //   $loc = $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad"
+          $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
+          $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
+          $loc = $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad" ;
         // //   $r = '';
-        //   $r = '{
-        //             "title"=> "'.ucwords(strtolower($row["doc_name"])).'",
-        //             "layout_code"=> "308",
-        //             "layout_des"=> "booking_card",
-        //             "sub_text"=> "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h=>i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
-        //             "image"=> "'.$row["profile"].'",
-        //             "timestamp"=> "",
-        //             "hospital_loc" => "'.$loc.'",
-        //             "appointment_token"=>"OPD Token No. : '.$row["appointmentTokenNumber"].'",
-        //             "sub_text1"=>"'.html_entity_decode($row["mednet_DepartmentName"]).'",
-        //             "is_online"=>"0",
-        //             "is_physical"=>"1",
-        //             "rating"=>"",
-        //             "review"=>"",
-        //             "web_link"=> "",
-        //             "web_view"=> "0",
-        //             "click_action"=> "1",
-        //             "web_view_heading"=> "",
-        //             "page_code"=> "5020",
-        //             "next_page"=> {
-        //                 "page_code"=> "pdf_view",
-        //                 "data_self"=> "",
-        //                 "data_heading"=> "'.$row["patient_name"].'",
-        //                 "data_url"=> "'.$data_url.'"
-        //             },
-        //             "elements"=> []
-        //         },';
-        //     $p .= $r;
+          $r = '{
+                    "title" : "'.ucwords(strtolower($row["doc_name"])).'",
+                    "layout_code" : "308",
+                    "layout_des": "booking_card",
+                    "sub_text": "'.date("d M Y",strtotime($row["booking_date"])).' - '.date("h:i a",strtotime($row["booking_from"])).'\n'.$value_amount.'",
+                    "image": "'.$row["profile"].'",
+                    "timestamp": "",
+                    "hospital_loc" : "'.$loc.'",
+                    "appointment_loc" : "'.$row['doctor_room'].'",
+                    "appointment_token" : "'.$row['appointmentTokenNumber'].'",
+                    "doctor" : "'.$row['doc_name'].'",
+                    "doctor_id" : "'.$row['doctor_id'].'",
+                    "nursing_loc" : "'.$row['nursing_station'].'",
+                    "nursing_token" : "'.$row['nursingtoken'].'",
+                    "radiology_loc" : "",
+                    "radiology_token" : "",
+                    "lab_loc" : "",
+                    "lab_token" : "",
+                    "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",
+                    "is_online":"0",
+                    "is_physical":"1",
+                    "rating":"",
+                    "review":"",
+                    "web_link": "",
+                    "web_view": "0",
+                    "click_action": "1",
+                    "web_view_heading": "",
+                    "page_code": "5020",
+                    "next_page": {
+                        "page_code": "pdf_view",
+                        "data_self": "",
+                        "data_heading": "'.$row["patient_name"].'",
+                        "data_url": "'.$data_url.'"
+                    },
+                    "elements": []
+                },';
+            $p .= $r;
 
-
-        // }
+        }
+        
 
         return $p;
 
@@ -1337,7 +1342,7 @@
 
         $today_date = date("Y-m-d");
     
-        $sql = "SELECT a.loc, a.doctor_id, a.booking_from, a.booking_to, a.booking_type, a.is_video_start, a.booking_date,a.amount, a.interest, a.id, a.status, a.created_on, a.appointmentTokenNumber, a.reference_id, b.prefix, b.patient_name, b.mrn_no, b.gender, b.dob, b.address, c.complaint, c.experiencing_since, c.past_history, c.sugar, c.bp, c.body_temperature, c.spo, d.DoctorName AS doc_name, d.gw_id, d.doctor_photo AS profile, d.mednet_DepartmentName, d.CurrentDesignation AS designation FROM video_patient_transaction a INNER JOIN video_patient b ON b.id = a.patient_id LEFT JOIN video_calling_booking_extra c ON c.booking_id = a.id INNER JOIN gw_doctor_info d ON d.gw_id = a.doctor_id WHERE a.status = '3' $mrn_sql AND a.booking_date >= '$today_date' ORDER BY a.id DESC";
+        $sql = "SELECT a.loc,a.doctor_room,a.nursing_station,a.nursingtoken,a.booking_from, a.booking_to, a.booking_type, a.is_video_start, a.booking_date,a.amount, a.interest, a.id, a.status, a.created_on, a.appointmentTokenNumber, a.reference_id, b.prefix, b.patient_name, b.mrn_no, b.gender, b.dob, b.address, c.complaint, c.experiencing_since, c.past_history, c.sugar, c.bp, c.body_temperature, c.spo, d.DoctorName AS doc_name, d.gw_id, d.doctor_photo AS profile, d.mednet_DepartmentName, d.CurrentDesignation AS designation FROM video_patient_transaction a INNER JOIN video_patient b ON b.id = a.patient_id LEFT JOIN video_calling_booking_extra c ON c.booking_id = a.id INNER JOIN gw_doctor_info d ON d.gw_id = a.doctor_id WHERE a.status = '3' $mrn_sql AND a.booking_date >= '$today_date' ORDER BY a.id DESC";
 
         $query = cj_query($sql);
         if (!$query || mysqli_num_rows($query) == 0) {
@@ -1365,7 +1370,6 @@
                 "appointment_loc" => $row['doctor_room'],
                 "appointment_token" => $row['appointmentTokenNumber'],
                 "doctor" => $row['doc_name'],
-                "doctor_id" => $row['doctor_id'],
                 "nursing_loc" => $row['nursing_station'],
                 "nursing_token" => $row['nursingtoken'],
                 "radiology_loc" => "",
@@ -1402,7 +1406,7 @@
 
             return ',' . json_encode($token_json);
     }
-
+    
     // function get_tokens($data) {
     //     $mrn = $data['data_global']['mrn'];
     //     $mrn_sql = "";
