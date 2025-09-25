@@ -66,7 +66,7 @@ function call_token_api($mrn, $booking_date, $row , $loc) {
     $final = [];
 
     if (empty($apiData)) {
-        $final[] = [
+        $final = array(
             "code"=>"101",
             "message"=>"booking found but services not started yet",
             "result" => [
@@ -75,11 +75,11 @@ function call_token_api($mrn, $booking_date, $row , $loc) {
                     "service_done" =>"1",
                 ]
             ]
-        ];
+        );
         return $final;
     }
 
-    $final = [
+    $final = array(
         "code" => "101",
         "service"=> "Appointment",
         "message" => "booking and services",
@@ -87,7 +87,7 @@ function call_token_api($mrn, $booking_date, $row , $loc) {
             ["service" => "Appointment",
             "service_done" =>"1"]
         ]   
-    ];
+    );
 
     foreach ($apiData as $service) {
         $final["result"][] = [
