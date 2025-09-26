@@ -281,14 +281,7 @@
                                 "data_url": "'.$dev_url.'home_care"
                             },
                             "elements": []
-                        }
-                        
-                        
-
-
-
-
-
+                }
                       ]
                     },
 
@@ -304,6 +297,49 @@
                         "timestamp": "10 Aug 2021",
                         "next_page": {},
                         "elements": [
+                            {
+                                "title": "e-KYC",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "EKVYC",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Booking",
+                                    "data_url": "'.$dev_url.'e_kyc"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "Attendant Pass",
+                                "sub_text": "",
+                                "color": "#f58220",
+                                "image": "AttendantPass",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "page_view",
+                                    "data_self": "1",
+                                    "type": "attendant_pass",
+                                    "data_heading": "My Booking",
+                                    "data_url": "'.$dev_url.'attendent_pass"
+                                },
+                                "elements": []
+                            },
+                            {
+                                "title": "Discharge Summary",
+                                "sub_text": "",
+                                "color": "#008fc5",
+                                "image": "Bills",
+                                "click_action": "1",
+                                "next_page": {
+                                    "page_code": "view_data",
+                                    "data_self": "1",
+                                    "data_heading": "My Reports",
+                                    "data_url": "'.$dev_url.'my_dischargeSummary"
+                                },
+                                "elements": []
+                            },
                             {
                                 "title": "My Bills",
                                 "sub_text": "",
@@ -345,36 +381,8 @@
                                     "data_url": "'.$dev_url.'consent"
                                 },
                                 "elements": []
-                            },
-                            {
-                                "title": "e-KYC",
-                                "sub_text": "",
-                                "color": "#f58220",
-                                "image": "EKVYC",
-                                "click_action": "1",
-                                "next_page": {
-                                    "page_code": "view_data",
-                                    "data_self": "1",
-                                    "data_heading": "My Booking",
-                                    "data_url": "'.$dev_url.'e_kyc"
-                                },
-                                "elements": []
-                            },
-                            {
-                                "title": "Attendant Pass",
-                                "sub_text": "",
-                                "color": "#f58220",
-                                "image": "AttendantPass",
-                                "click_action": "1",
-                                "next_page": {
-                                    "page_code": "page_view",
-                                    "data_self": "1",
-                                    "type": "attendant_pass",
-                                    "data_heading": "My Booking",
-                                    "data_url": "'.$dev_url.'attendent_pass"
-                                },
-                                "elements": []
                             }
+                            
                         ]
                     }
                  
@@ -606,6 +614,7 @@
       a.loc,a.doctor_id,
       a.doctor_room,a.nursing_station,a.nursingtoken,
             a.booking_from,
+            e.coupon_code,
             a.patient_id,b.mobile
             ,a.booking_to
             ,a.booking_type
@@ -639,8 +648,7 @@
             from video_patient_transaction a
             inner join video_patient b on b.id = a.patient_id
             left join video_calling_booking_extra c on c.booking_id = a.id
-            inner join gw_doctor_info d on d.gw_id = a.doctor_id
-            where a.patient_id = '$patient_id' and a.status = '3'  and booking_date >= '$today_date' ORDER BY a.id  DESC";
+            inner join gw_doctor_info d on d.gw_id = a.doctor_id left join video_patient_coupon e on e.id=a.discount_coupon_id where a.patient_id = '$patient_id' and a.status = '3'  and booking_date >= '$today_date' ORDER BY a.id  DESC";
 
         $query = cj_query($sql);
         $p = '';
@@ -669,6 +677,8 @@
                     "image": "'.$row["profile"].'",
                     "timestamp": "",
                     "hospital_loc" : "'.$loc.'",
+                    "coupon_code" : "'.$row['coupon_code'].'",
+                    "amount" : "'.$row['amount'].'",
                     "appointment_loc" : "'.$row['doctor_room'].'",
                     "appointment_token" : "'.$row['appointmentTokenNumber'].'",
                     "doctor" : "'.$row['doc_name'].'",
