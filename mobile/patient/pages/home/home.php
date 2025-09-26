@@ -13,6 +13,7 @@
         if($video_booking == ","){
             $video_booking = "";
         }
+        $hospital ='';
         $discharge = get_discharge_data($mobile);
         $patient_id = $data["data_global"]["id"];
         $new_layout = '';
@@ -119,6 +120,11 @@
           $data_record["mobile"] = $data["data_global"]["mobile"];
           $data_record = encrypt_fun($data_record);
 
+          $hos_location = array(
+                "location" => $hospital
+          );
+          $hos_location = encrypt_fun($hos_location);
+
           $result = '[
           {
             "title": "",
@@ -212,7 +218,7 @@
                             "click_action": "1",
                             "next_page": {
                                 "page_code": "page_view",
-                                "data_self": "1",
+                                "data_self": "'.$hos_location.'",
                                 "type": "lab",
                                 "data_heading": "Lab Test",
                                 "data_url": "'.$dev_url.'doctor_lab"
