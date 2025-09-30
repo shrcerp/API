@@ -8,8 +8,8 @@
                         "title": "",
                         "layout_code": "17",
                         "layout_des": "bottomnavigation",
-                        "totalpage":"3",
-                        "currentindex":"1",
+                        "totalpage":"5",
+                        "currentindex":"0",
                         "sub_text": "",
                         "image": "https://app.housepital.in/admin_new/data/mobile/1607338181259.png",
                         "next_page": [],
@@ -17,22 +17,34 @@
                             
                             {
                                 "id":"0",
-                                "icon":"notification",
-                                "tab_title":"Notification",
-                                "activeicon":"notification_active",
+                                "icon":"Home-g",
+                                "tab_title":"Home",
+                                "activeicon":"Home-g_b",
                                 "tab_center":"0",
                                 "pagecode":"home",
-                                "data_url":"notification",
-
+                                "data_url":"home",
                                 "data_self":"",
                                 "data_heading_type":"text",
                                 "data_heading_image":"lib/assets/logo/logo_white.png",
-                                "data_heading": "Notification"
+                                "data_heading": "Home"
                             },{
                                 "id":"1",
-                                "icon":"logo_icon",
-                                "tab_title":"Home",
-                                "activeicon":"logo_icon",
+                                "icon":"Reports-g",
+                                "tab_title":"Reports",
+                                "activeicon":"Reports-g_b",
+                                "tab_center":"0",
+                                "pagecode":"home",
+                                "data_url":"my_reports",
+                                "data_self":"",
+                                "data_heading_type":"text",
+                                "data_heading_image":"Home",
+                                "data_heading": "Reports"
+                            },
+                            {
+                                "id":"2",
+                                "icon":"",
+                                "tab_title":"AI",
+                                "activeicon":"",
                                 "tab_center":"1",
                                 "pagecode":"home",
                                 "data_url":"home",
@@ -41,16 +53,29 @@
                                 "data_heading_image":"Home",
                                 "data_heading": "Home"
                             },{
-                                "id":"2",
-                                "icon":"user_whitecircle",
+                                "id":"3",
+                                "icon":"Prescription-g",
+                                "tab_title":"Prescription",
+                                "activeicon":"Prescription-g_b",
+                                "tab_center":"0",
+                                "pagecode":"home",
+                                "data_url":"my_prescription",
+                                "data_self":"",
+                                "data_heading_type":"text",
+                                "data_heading_image":"lib/assets/logo/logo_white.png",
+                                "data_heading": "Prescription"
+                            },
+                            {
+                                "id":"4",
+                                "icon":"Profile-g",
                                 "tab_title":"Profile",
-                                "activeicon":"user_whitecircle_active",
+                                "activeicon":"Profile-g_b",
                                 "tab_center":"0",
                                 "pagecode":"home",
                                 "data_url":"profile",
                                 "data_self":"",
                                 "data_heading_type":"text",
-                                "data_heading_image":"lib/assets/logo/logo_white.png",
+                                "data_heading_image":"Home",
                                 "data_heading": "Profile"
                             }
                         ]

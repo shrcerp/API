@@ -1,0 +1,26 @@
+{
+    "layout_type" : "menu"
+    ,"keys" : [
+        {
+        "key_name" : "data_global"
+      },{
+        "key_name" : "data_self"
+      },{
+        "key_name" : "slot_data"
+      },{
+        "key_name" : "active_date"
+      }
+    ]
+    ,"layouts" : [
+        {
+            "name" : "reschedule"
+            ,"api_type" : "run_function"
+            ,"function" : "reschedule"
+            ,"layout_code" : 1
+            ,"is_merge" : 0
+            ,"sql" : {}
+            ,"next_page_link" : ""
+            ,"data_self" : []
+        }
+    ]
+}

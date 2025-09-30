@@ -247,7 +247,7 @@
                             "image": "Healthcheckup",
                             "click_action": "1",
                             "next_page": {
-                                "page_code": "view_data",
+                                "page_code": "coming_soon",
                                 "data_self": "1",
                                 "data_heading": "My Lab Report",
                                 "data_url": "'.$dev_url.'my_labReport"
@@ -261,7 +261,7 @@
                             "image": "Diabitic",
                             "click_action": "1",
                             "next_page": {
-                                "page_code": "view_data",
+                                "page_code": "coming_soon",
                                 "data_self": "1",
                                 "data_heading": "My Discharge Summary",
                                 "data_url": "'.$dev_url.'my_dischargeSummary"
@@ -347,7 +347,7 @@
                                 "image": "Bills",
                                 "click_action": "1",
                                 "next_page": {
-                                    "page_code": "view_data",
+                                    "page_code": "coming_soon",
                                     "data_self": "1",
                                     "data_heading": "My Reports",
                                     "data_url": "'.$dev_url.'my_bills"
@@ -361,7 +361,7 @@
                                 "image": "Records",
                                 "click_action": "1",
                                 "next_page": {
-                                    "page_code": "view_data",
+                                    "page_code": "coming_soon",
                                     "data_self": "1",
                                     "data_heading": "My Records",
                                     "data_url": "'.$dev_url.'my_records"

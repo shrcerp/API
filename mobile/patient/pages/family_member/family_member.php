@@ -27,7 +27,7 @@ function get_family_member($data){
         $result = '
                {
                     "title": "Hi",
-                    "layout_code": "103",
+                    "layout_code": "314",
                     "layout_des": "dropdown",
                     "sub_text": "",
                     "image": "https://sarvodayahospital19.com//api/mobile/images/male_icon.png",

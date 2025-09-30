@@ -57,7 +57,9 @@
       if($row_get['reference_id'] != null ){
         $date_diff = dateDiffInDays($payment_date, $today_date);
         if($date_diff > 3){
-          $cancel_slot = cancel_unwanted_bill($txn_no);
+          // $cancel_slot = cancel_unwanted_bill($txn_no);
+
+          $credit_note = get_curl($refund_url,"POST",$global_header, $refund_post);
        
           $main_refund_url = "http://mednet.anshuhospitals.in:8080/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
           $main_refund_post = json_encode([
@@ -78,7 +80,6 @@
             "creditNoteType" : "P"
           }' ;
 
-          $credit_note = get_curl($refund_url,"POST",$global_header, $refund_post);
 
           $razor_pay_refund = razor__pay_refund((float)$row_get['amount'],$payment_id);
 
@@ -105,32 +106,32 @@
          
           $cancel_slot = cancel_unwanted_bill($txn_no);
 
-          $main_refund_url = "http://mednet.anshuhospitals.in:8080/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
-          $main_refund_post = json_encode([
-            "txnHeaderID"      => (int)$txn_no,
-            "refundAmount"     => (float)$row_get['amount'],
-            "paymentMode"      => "Online",
-            "txnRefundDate"    => date("d-m-Y"),   
-            "refundNarration"  => "narration1",
-            "notes"            => "done"
-          ]);
-          $refund_result = get_refund($main_refund_url, "POST", $main_refund_post);
+          // $main_refund_url = "http://mednet.anshuhospitals.in:8080/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
+          // $main_refund_post = json_encode([
+          //   "txnHeaderID"      => (int)$txn_no,
+          //   "refundAmount"     => (float)$row_get['amount'],
+          //   "paymentMode"      => "Online",
+          //   "txnRefundDate"    => date("d-m-Y"),   
+          //   "refundNarration"  => "narration1",
+          //   "notes"            => "done"
+          // ]);
+          // $refund_result = get_refund($main_refund_url, "POST", $main_refund_post);
 
           $razor_pay_refund = razor__pay_refund((float)$row_get['amount'],$payment_id);
 
-          if(!empty($refund_result['success']) && $refund_result['success'] == 1){
+          if(!empty($cancel_slot['success']) && $cancel_slot['success'] == 1){
             $sql_update = "UPDATE `video_patient_transaction` SET status = '5' WHERE id = '$booking_id'";
             $query_update = mysqli_query($con, $sql_update);
             return array(
               "code" => "101",
               "message" => "Booking Cancelled Successfully. Refund will be initiated and credited within next 7-10 working days.",
-              "result" => $refund_result
+              "result" => $cancel_slot
             );
           }else{
                 return array(
                   "code" => "102",
                   "message" => "Booking Cancelled Failed.",
-                  "result" => $refund_result
+                  "result" => $cancel_slot
               );
           }
          

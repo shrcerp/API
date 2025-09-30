@@ -20,6 +20,8 @@
                 "title": "'.$row["title"].'",
                 "sub_text": "'.$row["body"].'",
                 "sub_text_1": "",
+                "id": "'.$row["id"].'",
+                "is_read" : "'.$row["status"].'",
                 "click_action": "'.$click_action.'",
                 "timestamp": "",
                 "next_page": '.$next_page.'
@@ -32,7 +34,7 @@
       $result = '[
                     {
                         "title": "",
-                        "layout_code": "73",
+                        "layout_code": "314",
                         "layout_des": "info_card",
                         "sub_text": "",
                         "image": "",
@@ -49,6 +51,8 @@
                                 "title": "Welcome to Sarvodaya Hospital",
                                 "sub_text": "We are delighted to have you among us. On behalf of all the members and the management, we would like to extend our warmest welcome and good wishes!",
                                 "sub_text_1": "",
+                                "id": "2",
+                                "is_read" : "1",
                                 "click_action": "0",
                                 "timestamp": "",
                                 "next_page": {

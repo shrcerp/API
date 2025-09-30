@@ -118,7 +118,7 @@
                         $a ='{
                             "image": "https://sarvodayahospital19.com//api/mobile/images/sarvodaya_mobile_logo.png",
                             "title": "'.$row["primaryDoctorName"].'",
-                            "sub_text": "Name - '.$row['patientName'].' \nDate - '.date("d M Y",strtotime($row['formattedTxnDate'])).'" ,
+                            "sub_text": "'.date("d M Y",strtotime($row['formattedTxnDate'])).'" ,
                             "sub_text_1": "",
                             "click_action": "2",
                             "timestamp": "",

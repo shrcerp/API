@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
     function get_doctor_data($data){
       global $con;
      
@@ -15,7 +11,6 @@
         $result_data = mysqli_query($con, $sql);
      
         $row = mysqli_fetch_assoc($result_data);
-
        
         $doctor = [
             "doc_image"       => $row['doctor_photo'],
