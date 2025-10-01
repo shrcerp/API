@@ -48,7 +48,16 @@
           $query = cj_query($sql);
           $patient_id = mysqli_insert_id($con);
           $get_patient_data = get_patient_data($patient_id);
-          $data_global_e = encrypt_fun($get_patient_data);
+          $patient_data = array(
+                "mobile" => $get_patient_data["mobile"]
+                ,"mrn" => $get_patient_data["mrn_no"]
+                ,"id" => $get_patient_data["id"]
+                ,"user_type" => "1"
+                ,"name" => $get_patient_data["patient_name"]
+                ,"prefix" => $get_patient_data["prefix"]
+            );
+            $data_global_e = encrypt_fun($patient_data);
+        //   $data_global_e = encrypt_fun($get_patient_data);
           $login_data = '[
                               {
                                   "email_id": "",
@@ -70,7 +79,7 @@
                                       "page_code": "home",
                                       "data_self": "",
                                       "data_heading": "",
-                                      "data_url": "https://sarvodayahospital.com/api/mobile/patient/home"
+                                      "data_url": "https://sarvodayahospital.com/api/mobile/test/home"
                                   },
                                   "country": " ",
                                   "pin": "",

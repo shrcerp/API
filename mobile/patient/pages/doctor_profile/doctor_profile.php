@@ -4,14 +4,13 @@
       global $con;
      
       $data_global = $data["data_global"];
-    
 
         $doctor_id = $data['doctor_id'];
         $sql="select * from gw_doctor_info where gw_id=".$doctor_id ;
         $result_data = mysqli_query($con, $sql);
      
         $row = mysqli_fetch_assoc($result_data);
-       
+        $loc= $row['hospitals'];
         $doctor = [
             "doc_image"       => $row['doctor_photo'],
             "doc_name"        => $row['DoctorName'],
@@ -21,9 +20,9 @@
             "doc_reg_number"  => $row['RegNumber'],
         ];
 
-        $mednet_doctor_data = get_booking_mednet_data($doctor['doc_mednet_id']);
-        $data_global =  decrypt_fun('MG12NEp3bDFQUGlNQTE4bFJwQkg1aXZzQU5pdVd0S3h4c2hBUjVYYjlYS21OTytCd1dWK2xUcEZNQXJ5QmhtTTFMWlFZVTlHVGJhUWhLUXZQajRMa1liNERtd1hlVER3YmRrN1VxTnJCYzNzaTFRcW81U0ZVcmkzNmdzTnpJM1hGYTRJK2NjbE5Ma2lzOFhFRE4ybzVBPT0=');
-        $doctor_tariff = bookingdoctor_amount($doctor['doc_reg_number'],"");
+        $mednet_doctor_data = get_booking_mednet_data($doctor['doc_mednet_id'],$loc);
+        // $data_global =  decrypt_fun('MG12NEp3bDFQUGlNQTE4bFJwQkg1aXZzQU5pdVd0S3h4c2hBUjVYYjlYS21OTytCd1dWK2xUcEZNQXJ5QmhtTTFMWlFZVTlHVGJhUWhLUXZQajRMa1liNERtd1hlVER3YmRrN1VxTnJCYzNzaTFRcW81U0ZVcmkzNmdzTnpJM1hGYTRJK2NjbE5Ma2lzOFhFRE4ybzVBPT0=');
+        $doctor_tariff = bookingdoctor_amount($doctor['doc_reg_number'],"",$loc);
 
         $today = date('Y-m-d');
 
@@ -115,10 +114,10 @@
 
     }
 
-    function get_booking_mednet_data($doctorID){
+    function get_booking_mednet_data($doctorID,$loc){
         // $loc = $_POST["loc"];
 
-        $loc = 'sarvodaya-hospital-greater-noida-west';
+        // $loc = 'sarvodaya-hospital-greater-noida-west';
 
 
         if($loc == 'sarvodaya-hospital-research-centre-sector-8'){
@@ -165,10 +164,10 @@
           return json_decode($response,1);
     }
 
-    function bookingdoctor_amount($doctor_registration_no,$mrn){
+    function bookingdoctor_amount($doctor_registration_no,$mrn,$loc){
       $curl = curl_init();
     //   $loc = $_POST["loc"];
-        $loc = 'sarvodaya-hospital-greater-noida-west';
+        // $loc = 'sarvodaya-hospital-greater-noida-west';
 
 
       curl_setopt_array($curl, array(

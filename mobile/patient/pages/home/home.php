@@ -6,6 +6,7 @@
         global $con;
 
         $mobile = $data["data_global"]["mobile"];
+        // print_r($data['data_global']);
         $switch_selection = get_user_data($data["data_global"]["mobile"],$data["data_global"]["id"]);
         $get_tokens = get_tokens($data);
 

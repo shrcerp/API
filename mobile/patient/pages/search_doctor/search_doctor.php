@@ -14,7 +14,7 @@
     //    print_r($location);
        $search = htmlentities($search, ENT_QUOTES);
        $search = preg_replace('/^Dr[.\s]+/i', '', $search);
-       print_r($search);
+    //    print_r($search);
       $sql = "select * from gw_doctor_info  where OnlineAppointment = 1 ";
        if($location ){
            $sql .= " and FIND_IN_SET('$location',hospitals) ";

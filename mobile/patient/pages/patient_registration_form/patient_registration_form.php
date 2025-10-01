@@ -5,7 +5,7 @@
                 "code": "101",
                 "message": "Success",
                 "result": {
-                  "submit_form_url": "https://sarvodayahospital19.com/api/mobile/patient/submit_patient_registration",
+                  "submit_form_url": "https://sarvodayahospital19.com/api/mobile/test/submit_patient_registration",
                   "elements": [
 
                     {
@@ -324,7 +324,7 @@
                       "save_data_global": "1",
                       "data_self": "'.$data_self.'",
                       "data_heading": "Home",
-                      "data_url": "https://sarvodayahospital19.com/api/mobile/patient/home"
+                      "data_url": "https://sarvodayahospital19.com/api/mobile/test/home"
                   }
                 }
               }';

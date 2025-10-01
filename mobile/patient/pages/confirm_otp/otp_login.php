@@ -120,7 +120,6 @@
 
             $k = check_for_patient_register_inourdata($mobile_number);
 
-
             if(((isset($result["error_code"]) && $result["error_code"] == "604") || !$result) && !count($k)){
 
                     $data_global = array(
