@@ -103,10 +103,10 @@
                       "data_global": "MW9YS2V2WFFJYno4UDltZjJ4SGJjMVI3WUJEZEFGem5HaGVtUXAzM3JQbjdGTUF6V0szSEt3YlRLS3FIU2lrbnNIakFxbE5zYWFEdCtOR3o3RnB6azlaUmgzTVpIdTA4VzJQK2w5dEN5ZnRYbDRUYVpLb2FCUzZNd3Y0WlVDVnJhRkk5M2hyRmtBWFhZZDVGV1ZCZlpKb21QNkVDdWNSTWc4amJBM00xeW03cmlMNlJNNERHN3Q4MEQ4TXN3OTlvK1B4RXpBWmszOEt0Nzdta3pkYURhOS9xNGpvdDdwZkxFaHA1UldRQnd2L203K09uVWpkd1ZMeTlqNzRLNGptNHJHcHdVVGVEaGNSZS9IZTZ2TUhnSHhTeElTWmFHQ09ha3NBSGs0WlNwRzhDVDZuWEdTZW9nZjBnZDVUandibHhGV2hvRDJwczhnaVdSRXVSeERBOW1uVUFwMllpMjZkOUtpaTMza2cxZjhKUmJ4T1hwdXJCVVl6VnUyenUwVEpGZkZQNkF6NlY2VEYyd3NhdWJPTGh2ZHhKdE1adVB0NkF5T1Z0T0p6OFZPYXRVR2VTaWZqZVhlTUljRVRNQkg1eWpuYklnOFpMVnlSeUNsUGMzcFpNWWdXalNwbXhOMmhIcHlERlN4bUpyc3lhdkFhMXlGVkMzTndPNmpXVFBMbHJuS2pRVGFPWm55VGFMSWhtaXFwRTlBPT0=",
                       "next_page": {
                           "page_code": "screen",
-                          "screenid": 1,
+                          "screenid": 0,
                           "data_self": "",
                           "data_heading": "",
-                          "data_url": "https://sarvodayahospital19.com/api/mobile/patient/home"
+                          "data_url": "https://sarvodayahospital19.com/api/mobile/test/home"
                       }
                   }
               ]';

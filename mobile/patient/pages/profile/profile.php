@@ -192,9 +192,21 @@
                               "color" : "#FF5733",
                               "click_action": "1",
                               "next_page" : {
-                                  "page_code" : "view_data",
+                                  "page_code" : "html_page",
+                                  "type":"tnc",
                                   "data_heading" : "Terms & Conditions",
                                   "data_url" : "'.$dev_url .'Terms_Conditions"
+                              }
+                            },
+                            {
+                              "title" : "Privacy Policy",
+                              "color" : "#FF5733",
+                              "click_action": "1",
+                              "next_page" : {
+                                  "page_code" : "html_page",
+                                  "type":"privacy",
+                                  "data_heading" : "Privacy Policy",
+                                  "data_url" : "'.$dev_url .'privacy_policy"
                               }
                             },
                             {
@@ -202,7 +214,8 @@
                               "color" : "#FF5733",
                               "click_action": "1",
                               "next_page" : {
-                                  "page_code" : "view_data",
+                                  "page_code" : "html_page",
+                                  "type":"refund",
                                   "data_heading" : "Refund Policy",
                                   "data_url" : "'.$dev_url .'Refund_Policy"
                                 }
@@ -212,7 +225,7 @@
                               "color" : "#FF5733",
                               "click_action": "1",
                               "next_page" : {
-                                  "page_code" : "view_data",
+                                  "page_code" : "delete",
                                   "data_heading" : "Delete Account",
                                   "data_url" : "'.$dev_url .'delete_account"
                                 }

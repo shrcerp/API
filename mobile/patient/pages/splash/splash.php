@@ -7,7 +7,7 @@
                 "screenid": 0,
                 "data_self": "",
                 "data_heading": "",
-                "data_url": "https://sarvodayahospital19.com/api/mobile/patient/home"
+                "data_url": "https://sarvodayahospital19.com/api/mobile/test/home"
             }}';
       $result = json_decode($result,1);
       return array(

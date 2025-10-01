@@ -232,7 +232,7 @@
                             "image": "Pharma",
                             "click_action": "1",
                             "next_page": {
-                                "page_code": "page_view",
+                                "page_code": "coming_soon",
                                 "data_self": "1",
                                 "type": "pharmacy",
                                 "data_heading": "Pharmacy",
@@ -627,6 +627,7 @@
             ,a.created_on
             ,a.appointmentTokenNumber
             ,a.reference_id
+            ,a.reschedlue_id
             ,b.prefix
             ,b.patient_name
             ,b.mrn_no
@@ -665,6 +666,7 @@
                 "mednet_DepartmentName" => $row["mednet_DepartmentName"],
             ];
             $data_self_doc = encrypt_fun($data_self_doc);
+            $is_reschdule = $row['reschedlue_id'] == null || $row['reschedlue_id'] == "" ? "0" : "1" ;
           $value_amount = 'Paid Amount : '.$row["amount"].' Rs';
           $data_url = "https://sarvodayahospital19.com/admin/N/R?token=".base64_encode($row["id"]);
           $loc = $row['loc'] == 'sarvodaya-hospital-greater-noida-west' ? "Sarvodaya Hospital Greater Noida West" : "Sarvodaya Hospital, Sector 8, Faridabad" ;
@@ -687,6 +689,7 @@
                     "nursing_token" : "'.$row['nursingtoken'].'",
                     "radiology_loc" : "",
                     "radiology_token" : "",
+                    "reschedule" : "'.$is_reschdule.'",
                     "lab_loc" : "",
                     "lab_token" : "",
                     "sub_text1":"'.html_entity_decode($row["mednet_DepartmentName"]).'",

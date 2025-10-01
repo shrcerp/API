@@ -31,17 +31,14 @@
         $status = $row['status'];
         $message = $row['message'];
         $reschedlue_id = $row['reschedlue_id'];
-       
-
-
-
-
         $response = $row['response'] ?? '';
         $response = mysqli_real_escape_string($con, $response);
         $mednet_response_json = $row['mednet_response_json'] ?? ''; 
         $mednet_response_json = mysqli_real_escape_string($con, $mednet_response_json);
-       
-       
+        
+        $payment_response = json_decode($row['response'], true);
+        $order_id = isset($payment_response['order_id']) ? $payment_response['order_id'] : null;
+        
         $prefix = $row['prefix'];
         $patient_name = $row["patient_name"];
         $gender = $row["gender"];
@@ -86,10 +83,10 @@
         )";
         $query_1 = mysqli_query($con, $sql_insert);
         $booking_id = mysqli_insert_id($con);
-        if($booking_id){
+        if($query_1){
             $sql_update = "update video_patient_transaction set status = 5 where id=$booking_id_old ";
             $query_update = mysqli_query($con, $sql_update);
-
+            // echo $order_id ;
             $confirm_reschedule = salil_sir_fucntion_to_insert_booking_data($order_id,$reference_id);
             return array(
                 "code" => 101,
