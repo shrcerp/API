@@ -1,26 +1,25 @@
 <?php
 
       function submit_patient_registration($data){
+          global $dev_url;
           global $con;
           $elements = json_decode($data["elements"],1);
 
           $mobile =$data['data_global']["mobile"];
           $Prefix = get_elments_from_heading("Prefix",$elements);
-
           $patient_name = get_elments_from_heading("Patient Name",$elements);
           $Gender = get_elments_from_heading("Gender",$elements);
           $Address = get_elments_from_heading("Address",$elements);
           $dob = get_elments_from_heading("Date Of Birth",$elements);
           $state_id = get_elments_from_heading("State",$elements);
           $state_name = "";
-          $state_list = $elements[5]["configuration"]["option_value"];
+          $state_list = $elements[4]['elements'][0]["configuration"]["option_value"];
           foreach($state_list as $n => $n_v){
               if($state_id == $n_v[0]){
                     $state_name = $n_v[1];
                     break;
               }
           }
-
           $city_name = get_elments_from_heading("City",$elements);
           $pin_code = get_elments_from_heading("Pin Code",$elements);
 
@@ -79,7 +78,7 @@
                                       "page_code": "home",
                                       "data_self": "",
                                       "data_heading": "",
-                                      "data_url": "https://sarvodayahospital.com/api/mobile/test/home"
+                                      "data_url": "'.$dev_url .'home"
                                   },
                                   "country": " ",
                                   "pin": "",
@@ -96,6 +95,12 @@
       function get_elments_from_heading($title,$elements){
 
           foreach ($elements as $i => $value) {
+            if($value['layout_code']=="20/5-5"){
+                foreach($value['elements'] as $j => $value_1)
+                if($value_1["title"] == $title){
+                    return $value_1["value"];
+                }
+            }
               if($value["title"] == $title){
                   return $value["value"];
               }

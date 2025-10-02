@@ -2,7 +2,7 @@
 
 
     function add_insurance_stage_2_form($data){
-
+        global $dev_url;
       global $con;
       $search = "";
       $data_global = $data["data_global"];
@@ -40,7 +40,7 @@
                 "code": "101",
                 "message": "Success",
                 "result": {
-                    "submit_form_url": "https://sarvodayahospital19.com/api/mobile/patient/add_insurance_stage_2_submit",
+                    "submit_form_url": "'.$dev_url .'add_insurance_stage_2_submit",
                     "elements": '.json_encode($elements_new).',
                     "submit_button_name": "Submit",
                     "submit_button_background_color": "#FFFFFF",
@@ -51,7 +51,7 @@
                         "page_code": "home",
                         "data_self": "MG12NEp3bDFQUGlNQTE4bFJwQkg1aXZzQU5pdVd0S3h4c2hBUjVYYjlYS21OTytCd1dWK2xUcEZNQXJ5QmhtTXBsTGdrUGVscXJsUmh2MkNXQmVNSkNtSTB0YkxSU2FsQUZkcnhHY0xYMWwxWEJHZEliUzVub1BldWVEWk94SDc=",
                         "data_heading": "Home",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/home"
+                        "data_url": "'.$dev_url .'home"
                     }
                 }
             }';

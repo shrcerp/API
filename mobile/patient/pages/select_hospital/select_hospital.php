@@ -1,7 +1,7 @@
 <?php
 
     function select_hospital_list(){
-
+        global $dev_url;
       $data_self_8 = encrypt_fun(array("location" => "sarvodaya-hospital-research-centre-sector-8"));
       $data_self_nodia = encrypt_fun(array("location" => "sarvodaya-hospital-greater-noida-west"));
 
@@ -39,7 +39,7 @@
                 "data_self": "'.$data_self_8.'",
                 "data_head":"sarvodaya-hospital-research-centre-sector-8",
                 "data_heading": "Sarvodaya Hospital, Sector-8",
-                "data_url": "https://sarvodayahospital19.com/api/mobile/patient/all_doctor_list"
+                "data_url": "'.$dev_url .'all_doctor_list"
             }
         },{
               "title": "",
@@ -61,7 +61,7 @@
                   "data_self": "'.$data_self_nodia.'",
                   "data_head":"sarvodaya-hospital-greater-noida-west",
                   "data_heading": "Sarvodaya Hospital, Greater Noida",
-                  "data_url": "https://sarvodayahospital19.com/api/mobile/patient/all_doctor_list"
+                  "data_url": "'.$dev_url .'all_doctor_list"
               }
           }]';
 

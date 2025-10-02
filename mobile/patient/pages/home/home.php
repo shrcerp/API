@@ -307,7 +307,7 @@
                                 "next_page": {
                                     "page_code": "view_data",
                                     "data_self": "1",
-                                    "data_heading": "My Booking",
+                                    "data_heading": "e-KYC",
                                     "data_url": "'.$dev_url.'e_kyc"
                                 },
                                 "elements": []
@@ -322,7 +322,7 @@
                                     "page_code": "page_view",
                                     "data_self": "1",
                                     "type": "attendant_pass",
-                                    "data_heading": "My Booking",
+                                    "data_heading": "Attendant Pass",
                                     "data_url": "'.$dev_url.'attendent_pass"
                                 },
                                 "elements": []
@@ -336,7 +336,7 @@
                                 "next_page": {
                                     "page_code": "view_data",
                                     "data_self": "1",
-                                    "data_heading": "My Reports",
+                                    "data_heading": "Discharge Summary",
                                     "data_url": "'.$dev_url.'my_dischargeSummary"
                                 },
                                 "elements": []
@@ -350,7 +350,7 @@
                                 "next_page": {
                                     "page_code": "coming_soon",
                                     "data_self": "1",
-                                    "data_heading": "My Reports",
+                                    "data_heading": "My Bills",
                                     "data_url": "'.$dev_url.'my_bills"
                                 },
                                 "elements": []
@@ -364,7 +364,7 @@
                                 "next_page": {
                                     "page_code": "coming_soon",
                                     "data_self": "1",
-                                    "data_heading": "My Records",
+                                    "data_heading": "Medical Records",
                                     "data_url": "'.$dev_url.'my_records"
                                 },
                                 "elements": []

@@ -65,7 +65,7 @@
 
 
       function otp_login_get_data($data){
-
+        global $dev_url ;
         $mobile_number = $data["mobile"];
         $firebase_id = $data["firebase_id"];
         mobile_firebase_update($mobile_number,$firebase_id);
@@ -106,7 +106,7 @@
                           "screenid": 0,
                           "data_self": "",
                           "data_heading": "",
-                          "data_url": "https://sarvodayahospital19.com/api/mobile/test/home"
+                          "data_url": "'.$dev_url .'home"
                       }
                   }
               ]';
@@ -152,7 +152,7 @@
                                           "page_code": "form_page",
                                           "data_self": "'.$mobile_number.'",
                                           "data_heading": "New Registration",
-                                          "data_url": "https://sarvodayahospital19.com/api/mobile/patient/patient_registration_form"
+                                          "data_url": "'.$dev_url .'patient_registration_form"
                                       },
                                       "country": " ",
                                       "pin": "",
@@ -231,7 +231,7 @@
                                     "page_code": "form_page",
                                     "data_self": "'.$mobile_number.'",
                                     "data_heading": "New Registration",
-                                    "data_url": "https://sarvodayahospital19.com/api/mobile/patient/patient_registration_form"
+                                    "data_url": "'.$dev_url .'patient_registration_form"
                                 },
                                 "country": " ",
                                 "pin": "",

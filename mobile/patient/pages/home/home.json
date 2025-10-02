@@ -39,7 +39,7 @@
                         "page_code": "form_page",
                         "data_self": "9953669955",
                         "data_heading": "New Registration",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/patient_registration_form"
+                        "data_url": "'.$dev_url .'patient_registration_form"
                     },
                     "value": "0",
                     "elements": [
@@ -118,7 +118,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 },
@@ -132,7 +132,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                        "data_url": "'.$dev_url .'my_booking"
                     },
                     "elements": []
                 },
@@ -146,7 +146,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Prescription",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_prescription"
+                        "data_url": "'.$dev_url .'my_prescription"
                     },
                     "elements": []
                 },
@@ -160,7 +160,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Lab Report",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_labReport"
+                        "data_url": "'.$dev_url .'my_labReport"
                     },
                     "elements": []
                 },
@@ -174,7 +174,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Discharge Summary",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_dischargeSummary"
+                        "data_url": "'.$dev_url .'my_dischargeSummary"
                     },
                     "elements": []
                 },
@@ -188,7 +188,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Discharge Summary",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_dischargeSummary"
+                        "data_url": "'.$dev_url .'my_dischargeSummary"
                     },
                     "elements": []
                 }
@@ -231,7 +231,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 },
@@ -245,7 +245,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                        "data_url": "'.$dev_url .'my_booking"
                     },
                     "elements": []
                 },
@@ -259,7 +259,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 },
@@ -273,7 +273,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                        "data_url": "'.$dev_url .'my_booking"
                     },
                     "elements": []
                 },
@@ -287,7 +287,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                        "data_url": "'.$dev_url .'my_booking"
                     },
                     "elements": []
                 }
@@ -315,7 +315,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 },
@@ -329,7 +329,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                        "data_url": "'.$dev_url .'my_booking"
                     },
                     "elements": []
                 },
@@ -343,7 +343,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 },
@@ -357,7 +357,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Booking",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_booking"
+                        "data_url": "'.$dev_url .'my_booking"
                     },
                     "elements": []
                 }
@@ -387,7 +387,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 },
@@ -403,7 +403,7 @@
                         "page_code": "view_data",
                         "data_self": "1",
                         "data_heading": "My Reports",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/my_reports"
+                        "data_url": "'.$dev_url .'my_reports"
                     },
                     "elements": []
                 }

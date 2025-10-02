@@ -2,7 +2,7 @@
 
 
     function add_insurance_form_fun($data){
-
+        global $dev_url;
       global $con;
       $search = "";
       $data_global = $data["data_global"];
@@ -21,7 +21,7 @@
     "code": "101",
     "message": "Success",
     "result": {
-        "submit_form_url": "https://sarvodayahospital19.com/api/mobile/patient/add_insurance_form_submit",
+        "submit_form_url": "'.$dev_url .'add_insurance_form_submit",
         "elements": [
             {
                 "title": "Insurance Company",
@@ -71,7 +71,7 @@
             "page_code": "form_page",
             "data_self": "",
             "data_heading": "Submit your Documents",
-            "data_url": "https://sarvodayahospital19.com/api/mobile/patient/add_insurance_stage_2"
+            "data_url": "'.$dev_url .'add_insurance_stage_2"
         }
     }
 }';

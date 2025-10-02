@@ -228,7 +228,7 @@
                               "next_page" : {
                                   "page_code" : "delete",
                                   "data_heading" : "Delete Account",
-                                  "data_url" : "'.$dev_url .'delete_account"
+                                  "data_url" : "'.$dev_url .'account_delete"
                                 }
                             },
                             {

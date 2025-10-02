@@ -1,13 +1,13 @@
 <?php
 
     function get_splash($data){
-
+        global $dev_url;
     $result = '{"next_page": {
                 "page_code": "screen",
                 "screenid": 0,
                 "data_self": "",
                 "data_heading": "",
-                "data_url": "https://sarvodayahospital19.com/api/mobile/test/home"
+                "data_url": "'.$dev_url .'home"
             }}';
       $result = json_decode($result,1);
       return array(

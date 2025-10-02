@@ -1,64 +1,101 @@
 <?php
       function patient_registration_form($data){
+        global $dev_url;
         $data_self = encrypt_fun($data['data_global']);
         $form = '{
                 "code": "101",
                 "message": "Success",
                 "result": {
-                  "submit_form_url": "https://sarvodayahospital19.com/api/mobile/test/submit_patient_registration",
+                  "submit_form_url": "'.$dev_url .'submit_patient_registration",
                   "elements": [
-
                     {
-                        "title": "Prefix",
-                        "key": "prefix",
+                        "title": "",
                         "text": "",
-                        "layout_code": "205",
+                        "layout_code": "20/5-5",
                         "layout_dis": "option",
-                        "configuration": {
-                            "option_value": [
-                                [
-                                    "Mr.",
-                                    "Mr."
-                                ],
-                                [
-                                    "Mrs.",
-                                    "Mrs."
-                                ],
-                                [
-                                    "Miss.",
-                                    "Miss."
-                                ],
-                                [
-                                    "Master.",
-                                    "Master"
-                                ],
-                                [
-                                    "Baby boy of",
-                                    "Baby boy of"
-                                ],
-                                [
-                                    "Baby girl of",
-                                    "Baby girl of"
-                                ],
-                                [
-                                    "Mx.",
-                                    "Mx."
-                                ],
-                                [
-                                    "Dr.",
-                                    "Dr."
-                                ],
-                                [
-                                    "Prof.",
-                                    "Prof."
+                        "configuration": "",
+                        "elements": [
+                            {
+                                "title": "Prefix",
+                                "key": "prefix",
+                                "text": "",
+                                "layout_code": "205",
+                                "layout_dis": "option",
+                                "configuration": {
+                                    "option_value": [
+                                        [
+                                            "Mr.",
+                                            "Mr."
+                                        ],
+                                        [
+                                            "Mrs.",
+                                            "Mrs."
+                                        ],
+                                        [
+                                            "Miss.",
+                                            "Miss."
+                                        ],
+                                        [
+                                            "Master.",
+                                            "Master"
+                                        ],
+                                        [
+                                            "Baby boy of",
+                                            "Baby boy of"
+                                        ],
+                                        [
+                                            "Baby girl of",
+                                            "Baby girl of"
+                                        ],
+                                        [
+                                            "Mx.",
+                                            "Mx."
+                                        ],
+                                        [
+                                            "Dr.",
+                                            "Dr."
+                                        ],
+                                        [
+                                            "Prof.",
+                                            "Prof."
+                                        ]
+                                    ]
+                                },
+                                "value": "",
+                                "validation": [
+                                    "require"
                                 ]
-                            ]
-                        },
-                        "value": "",
-                        "validation": [
-                            "require"
+                            },
+                            {
+                                "title": "Gender",
+                                "text": "",
+                                "key": "gender",
+                                "layout_code": "205",
+                                "layout_dis": "option",
+                                "configuration": {
+                                    "option_value": [
+                                        [
+                                            "M",
+                                            "Male"
+                                        ],
+                                        [
+                                            "F",
+                                            "Female"
+                                        ],
+                                        [
+                                            "X",
+                                            "Other"
+                                        ]
+                                    ]
+                                },
+                                "value": "",
+                                "validation": [
+                                    "require"
+                                ]
+                            }
                         ]
                     },
+                    
                     {
                         "title": "Patient Name",
                         "key": "patient_name",
@@ -71,33 +108,7 @@
                             "require"
                         ]
                     },
-                    {
-                        "title": "Gender",
-                        "text": "",
-                        "key": "gender",
-                        "layout_code": "205",
-                        "layout_dis": "option",
-                        "configuration": {
-                            "option_value": [
-                                [
-                                    "M",
-                                    "Male"
-                                ],
-                                [
-                                    "F",
-                                    "Female"
-                                ],
-                                [
-                                    "X",
-                                    "Other"
-                                ]
-                            ]
-                        },
-                        "value": "",
-                        "validation": [
-                            "require"
-                        ]
-                    },
+                    
                     {
                         "title": "Address",
                         "text": "",
@@ -127,185 +138,207 @@
                         ]
                     },
                     {
-                        "title": "State",
+                        "title": "",
                         "text": "",
-                        "key": "state",
-                        "layout_code": "205",
+                        "layout_code": "20/5-5",
                         "layout_dis": "option",
-                        "configuration": {
-                            "option_value": [
-                                [
-                                    1,
-                                    "ANDAMAN & NICOBAR ISLANDS"
+                        "configuration": "",
+                        "elements": [
+                            {
+                                "title": "State",
+                                "text": "",
+                                "key": "state",
+                                "layout_code": "205",
+                                "layout_dis": "option",
+                                "configuration": {
+                                    "option_value": [
+                                        [
+                                            1,
+                                            "ANDAMAN & NICOBAR ISLANDS"
+                                        ],
+                                        [
+                                            2,
+                                            "ANDHRA PRADESH"
+                                        ],
+                                        [
+                                            3,
+                                            "ARUNACHAL PRADESH"
+                                        ],
+                                        [
+                                            4,
+                                            "ASSAM"
+                                        ],
+                                        [
+                                            5,
+                                            "BIHAR"
+                                        ],
+                                        [
+                                            6,
+                                            "CHANDIGARH"
+                                        ],
+                                        [
+                                            7,
+                                            "CHATTISGARH"
+                                        ],
+                                        [
+                                            8,
+                                            "DADRA & NAGAR HAVELI"
+                                        ],
+                                        [
+                                            9,
+                                            "DAMAN & DIU"
+                                        ],
+                                        [
+                                            10,
+                                            "DELHI"
+                                        ],
+                                        [
+                                            11,
+                                            "GOA"
+                                        ],
+                                        [
+                                            12,
+                                            "GUJARAT"
+                                        ],
+                                        [
+                                            13,
+                                            "HARYANA"
+                                        ],
+                                        [
+                                            14,
+                                            "HIMACHAL PRADESH"
+                                        ],
+                                        [
+                                            15,
+                                            "JAMMU & KASHMIR"
+                                        ],
+                                        [
+                                            16,
+                                            "JHARKHAND"
+                                        ],
+                                        [
+                                            17,
+                                            "KARNATAKA"
+                                        ],
+                                        [
+                                            18,
+                                            "KERALA"
+                                        ],
+                                        [
+                                            19,
+                                            "LAKSHADWEEP"
+                                        ],
+                                        [
+                                            20,
+                                            "MADHYA PRADESH"
+                                        ],
+                                        [
+                                            21,
+                                            "MAHARASHTRA"
+                                        ],
+                                        [
+                                            22,
+                                            "MANIPUR"
+                                        ],
+                                        [
+                                            23,
+                                            "MEGHALAYA"
+                                        ],
+                                        [
+                                            24,
+                                            "MIZORAM"
+                                        ],
+                                        [
+                                            25,
+                                            "NAGALAND"
+                                        ],
+                                        [
+                                            26,
+                                            "ODISHA"
+                                        ],
+                                        [
+                                            27,
+                                            "PONDICHERRY"
+                                        ],
+                                        [
+                                            28,
+                                            "PUNJAB"
+                                        ],
+                                        [
+                                            29,
+                                            "RAJASTHAN"
+                                        ],
+                                        [
+                                            30,
+                                            "SIKKIM"
+                                        ],
+                                        [
+                                            31,
+                                            "TAMIL NADU"
+                                        ],
+                                        [
+                                            32,
+                                            "TELANGANA"
+                                        ],
+                                        [
+                                            33,
+                                            "TRIPURA"
+                                        ],
+                                        [
+                                            34,
+                                            "UTTAR PRADESH"
+                                        ],
+                                        [
+                                            35,
+                                            "UTTARAKHAND"
+                                        ],
+                                        [
+                                            36,
+                                            "WEST BENGAL"
+                                        ]
+                                    ]
+                                },
+                                "value": "",
+                                "validation": [
+                                    "require"
                                 ],
-                                [
-                                    2,
-                                    "ANDHRA PRADESH"
-                                ],
-                                [
-                                    3,
-                                    "ARUNACHAL PRADESH"
-                                ],
-                                [
-                                    4,
-                                    "ASSAM"
-                                ],
-                                [
-                                    5,
-                                    "BIHAR"
-                                ],
-                                [
-                                    6,
-                                    "CHANDIGARH"
-                                ],
-                                [
-                                    7,
-                                    "CHATTISGARH"
-                                ],
-                                [
-                                    8,
-                                    "DADRA & NAGAR HAVELI"
-                                ],
-                                [
-                                    9,
-                                    "DAMAN & DIU"
-                                ],
-                                [
-                                    10,
-                                    "DELHI"
-                                ],
-                                [
-                                    11,
-                                    "GOA"
-                                ],
-                                [
-                                    12,
-                                    "GUJARAT"
-                                ],
-                                [
-                                    13,
-                                    "HARYANA"
-                                ],
-                                [
-                                    14,
-                                    "HIMACHAL PRADESH"
-                                ],
-                                [
-                                    15,
-                                    "JAMMU & KASHMIR"
-                                ],
-                                [
-                                    16,
-                                    "JHARKHAND"
-                                ],
-                                [
-                                    17,
-                                    "KARNATAKA"
-                                ],
-                                [
-                                    18,
-                                    "KERALA"
-                                ],
-                                [
-                                    19,
-                                    "LAKSHADWEEP"
-                                ],
-                                [
-                                    20,
-                                    "MADHYA PRADESH"
-                                ],
-                                [
-                                    21,
-                                    "MAHARASHTRA"
-                                ],
-                                [
-                                    22,
-                                    "MANIPUR"
-                                ],
-                                [
-                                    23,
-                                    "MEGHALAYA"
-                                ],
-                                [
-                                    24,
-                                    "MIZORAM"
-                                ],
-                                [
-                                    25,
-                                    "NAGALAND"
-                                ],
-                                [
-                                    26,
-                                    "ODISHA"
-                                ],
-                                [
-                                    27,
-                                    "PONDICHERRY"
-                                ],
-                                [
-                                    28,
-                                    "PUNJAB"
-                                ],
-                                [
-                                    29,
-                                    "RAJASTHAN"
-                                ],
-                                [
-                                    30,
-                                    "SIKKIM"
-                                ],
-                                [
-                                    31,
-                                    "TAMIL NADU"
-                                ],
-                                [
-                                    32,
-                                    "TELANGANA"
-                                ],
-                                [
-                                    33,
-                                    "TRIPURA"
-                                ],
-                                [
-                                    34,
-                                    "UTTAR PRADESH"
-                                ],
-                                [
-                                    35,
-                                    "UTTARAKHAND"
-                                ],
-                                [
-                                    36,
-                                    "WEST BENGAL"
+                                "change_option_value": "1",
+                                "change_url": "'.$dev_url .'/get_city_data"
+                            },
+                            {
+                                "title": "City",
+                                "text": "",
+                                "key": "city",
+                                "layout_code": "205",
+                                "layout_dis": "option",
+                                "configuration": {
+                                    "option_value": []
+                                },
+                                "value": "",
+                                "validation": [
+                                    "require"
                                 ]
-                            ]
-                        },
-                        "value": "",
-                        "validation": [
-                            "require"
-                        ],
-                        "change_option_value": "6",
-                        "change_url": "https://sarvodayahospital19.com/api/mobile/patient/get_city_data"
+                            }
+                        ]
                     },
+                    
                     {
-                        "title": "City",
+                        "title": "Pin Code",
+                        "key": "pin_code",
                         "text": "",
-                        "key": "city",
-                        "layout_code": "205",
-                        "layout_dis": "option",
-                        "configuration": {
-                            "option_value": []
-                        },
+                        "layout_code": "204",
+                        "layout_dis": "input",
+                        "configuration": [],
                         "value": "",
                         "validation": [
                             "require"
                         ]
                     },
                     {
-                        "title": "Pin Code",
-                        "key": "pin_code",
+                        "title": "I hereby confirm that the information provided in this registration form is true and correct to the best of my knowledge, and I agree to abide by the terms and conditions.",
+                        "key": "Terms",
                         "text": "",
-                        "layout_code": "204",
+                        "layout_code": "206",
                         "layout_dis": "input",
                         "configuration": [],
                         "value": "",
@@ -324,7 +357,7 @@
                       "save_data_global": "1",
                       "data_self": "'.$data_self.'",
                       "data_heading": "Home",
-                      "data_url": "https://sarvodayahospital19.com/api/mobile/test/home"
+                      "data_url": "'.$dev_url .'home"
                   }
                 }
               }';

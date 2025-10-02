@@ -1,6 +1,7 @@
 <?php
 
     function get_all_doctor_list($data){
+        global $dev_url ;
       global $con;
       $search = "";
       $data_global = $data["data_global"];
@@ -52,7 +53,7 @@
                         "page_code": "view_data",
                         "data_self": "'.$location.'",
                         "data_heading": "Search Result",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/patient/search_doctor"
+                        "data_url": "'.$dev_url .'search_doctor"
                     },
                     "elements": []
                 }]';
@@ -89,7 +90,7 @@
                             "data_self": "",
                             "doc_id": "'.$row["gw_id"].'",
                             "data_heading": "'.$row["DoctorName"].'",
-                            "data_url": "https://sarvodayahospital19.com/api/mobile/test/doctor_profile"
+                            "data_url": "'.$dev_url .'doctor_profile"
                         },
                         "elements": []
                     }';
@@ -137,7 +138,7 @@
                         "data_self": "",
                         "doc_id": "'.$row["doctorID"].'",
                         "data_heading": "'.$row["fullName"].'",
-                        "data_url": "https://sarvodayahospital19.com/api/mobile/test/doctor_profile"
+                        "data_url": "'.$dev_url .'doctor_profile"
                     },
                     "elements": []
                 }';

@@ -77,7 +77,7 @@
       }
       $data_s = '{
                     "title": "",
-                    "layout_code": "73",
+                    "layout_code": "73-1",
                     "layout_des": "info_card",
                     "sub_text": "",
                     "image": "",
@@ -152,7 +152,7 @@
           $result = '[
                         {
                             "title": "",
-                            "layout_code": "73",
+                            "layout_code": "73-1",
                             "layout_des": "info_card",
                             "sub_text": "",
                             "image": "",

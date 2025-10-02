@@ -139,10 +139,22 @@ function call_token_api($mrn, $booking_date, $loc) {
     }
 
     // Add LAB and Radiology ONLY if present
-    foreach (["Lab", "Radiology"] as $optionalSrv) {
-        if (isset($mappedServices[$optionalSrv])) {
-            $final["result"][] = $mappedServices[$optionalSrv];
+    // foreach (["Lab", "Radiology"] as $optionalSrv) {
+    //     if (isset($mappedServices[$optionalSrv])) {
+    //         $final["result"][] = $mappedServices[$optionalSrv];
+    //     }
+    // }
+
+    $insert = [];
+    foreach (["Lab", "Radiology"] as $opt) {
+        if (isset($mappedServices[$opt]) && $mappedServices[$opt]["service_done"] == "1") {
+            $insert[] = $mappedServices[$opt];
         }
+    }
+
+    // Insert Lab/Radiology after index 2 (before Prescription)
+    if (!empty($insert)) {
+        array_splice($final["result"], 3, 0, $insert);
     }
 
     return $final;
