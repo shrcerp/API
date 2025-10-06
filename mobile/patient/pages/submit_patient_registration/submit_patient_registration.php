@@ -87,7 +87,7 @@
                           ]';
           return array(
                 "code" => "101",
-                "message" => "Successfully submitted",
+                "message" => "Congratulations! Your registration was successful.",
                 "result" => json_decode($login_data,1)
           );
 

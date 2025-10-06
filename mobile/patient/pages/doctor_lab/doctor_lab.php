@@ -2,7 +2,7 @@
     function get_doctor_prescribed_lab($data){
 
         $mrn = $data['data_global']['mrn'];
-        $mrn = 'SR674812';
+        // $mrn = 'SR674812';
 
         $curl = curl_init();
         curl_setopt_array($curl, array(

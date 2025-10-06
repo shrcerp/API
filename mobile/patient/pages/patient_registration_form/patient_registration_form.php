@@ -2,6 +2,8 @@
       function patient_registration_form($data){
         global $dev_url;
         $data_self = encrypt_fun($data['data_global']);
+        $currentDate = date('Y-m-d');
+        // echo $currentDate;
         $form = '{
                 "code": "101",
                 "message": "Success",
@@ -129,8 +131,8 @@
                         "layout_dis": "datepicker",
                         "configuration": {
                             "from_date": "1930-01-01",
-                            "to_date": "2022-11-10",
-                            "start_date": "2022-11-04"
+                            "to_date": "'.$currentDate.'",
+                            "start_date": "'.$currentDate.'"
                         },
                         "value": "",
                         "validation": [
@@ -331,7 +333,8 @@
                         "configuration": [],
                         "value": "",
                         "validation": [
-                            "require"
+                            "require",
+                            "pincode"
                         ]
                     },
                     {

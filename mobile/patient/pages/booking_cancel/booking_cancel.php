@@ -26,7 +26,7 @@
       global $con;
       $created_on=date("Y-m-d h:i:s");
    
-      $sql_get = "SELECT a.response,a.id,a.status,a.amount, a.booking_from,a.booking_to,a.booking_date,a.payment_date,b.patient_name,b.prefix,b.mobile, a.mednet_json,a.mednet_response_json, a.reference_id ,a.check_in_time,a.check_out_time,a.in_consultation_time FROM `video_patient_transaction` a inner join video_patient b on b.id = a.patient_id where a.id = '$booking_id' and a.status = '3' and a.booking_date >= CURDATE()";
+      $sql_get = "SELECT a.loc,a.response,a.id,a.status,a.amount, a.booking_from,a.booking_to,a.booking_date,a.payment_date,b.patient_name,b.prefix,b.mobile, a.mednet_json,a.mednet_response_json, a.reference_id ,a.check_in_time,a.check_out_time,a.in_consultation_time FROM video_patient_transaction a inner join video_patient b on b.id = a.patient_id where a.id = '$booking_id' and a.status = '3' and a.booking_date >= CURDATE()";
       // echo $sql_get;
       
       $query_get = mysqli_query($con, $sql_get);
@@ -38,6 +38,8 @@
           ];
       }
       $row_get = mysqli_fetch_array($query_get);
+
+      $loc = $row_get['loc'];
 
       $payment_response = $row_get['response'];
       $payment_response = json_decode($payment_response, true);
@@ -57,13 +59,26 @@
       if($row_get['reference_id'] != null ){
         $date_diff = dateDiffInDays($payment_date, $today_date);
         if($date_diff > 3){
-          // $cancel_slot = cancel_unwanted_bill($txn_no);
 
+          if($loc == 'sarvodaya-hospital-research-centre-sector-8'){
+            $refund_url = "http://mednet.anshuhospitals.in:2520/mednet/api/billing/createCreditNote";
+            $main_refund_url = "http://mednet.anshuhospitals.in:2520/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
+            
+          }else{
+            $refund_url = "http://mednet.anshuhospitals.in:4040/mednet/api/billing/createCreditNote";
+            $main_refund_url = "http://mednet.anshuhospitals.in:4040/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
+
+          }
+          $refund_post = '{ 
+            "txnHeaderID": '.$txn_no.',
+            "creditNoteAmount": '.$row_get['amount'].',
+            "creditNoteType" : "P"
+          }' ;
           $credit_note = get_curl($refund_url,"POST",$global_header, $refund_post);
        
           // $main_refund_url_sec8 = "http://mednet.anshuhospitals.in:2520/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
           // $main_refund_url_noida = "http://mednet.anshuhospitals.in:4040/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
-          $main_refund_url_noida = "http://mednet.anshuhospitals.in:8080/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
+         
           $main_refund_post = json_encode([
             "txnHeaderID"      => $txn_no,
             "refundAmount"     => (float)$row_get['amount'],
@@ -74,18 +89,10 @@
           ]);
           $refund_result = get_refund($main_refund_url, "POST", $main_refund_post);
 
-
-          $refund_url = "http://mednet.anshuhospitals.in:8080/mednet/api/billing/createCreditNote" ;
-          $refund_post = '{ 
-            "txnHeaderID": '.$txn_no.',
-            "creditNoteAmount": '.$row_get['amount'].',
-            "creditNoteType" : "P"
-          }' ;
-
-          $razor_pay_refund = razor__pay_refund($row_get['amount']*100,$payment_id);
+          $razor_pay_refund = razor__pay_refund($row_get['amount']*100,$payment_id,$loc);
     
           if(!empty($refund_result['success']) && $refund_result['success'] == 1){
-            $sql_update = "UPDATE `video_patient_transaction` SET status = '5' WHERE id = '$booking_id'";
+            $sql_update = "UPDATE video_patient_transaction SET status = '5' WHERE id = '$booking_id'";
             $query_update = mysqli_query($con, $sql_update);
             return array(
               "code" => "101",
@@ -100,27 +107,13 @@
               );
           }
           
-
-  
         }else{
          
-          $cancel_slot = cancel_unwanted_bill($txn_no);
-          // https://mednet.anshuhospitals.in:2520/mednet/ws/patientBillingWS/createPatientBill
-          // $main_refund_url = "http://mednet.anshuhospitals.in:8080/mednet/ws/patientBillingWS/createPatientRefundByRefundInitiation";
-          // $main_refund_post = json_encode([
-          //   "txnHeaderID"      => (int)$txn_no,
-          //   "refundAmount"     => (float)$row_get['amount'],
-          //   "paymentMode"      => "Online",
-          //   "txnRefundDate"    => date("d-m-Y"),   
-          //   "refundNarration"  => "narration1",
-          //   "notes"            => "done"
-          // ]);
-          // $refund_result = get_refund($main_refund_url, "POST", $main_refund_post);
-
-          $razor_pay_refund = razor__pay_refund($row_get['amount']*100,$payment_id);
+          $cancel_slot = cancel_unwanted_bill($txn_no,$loc);
+          $razor_pay_refund = razor__pay_refund($row_get['amount']*100,$payment_id,$loc);
 
           if(!empty($cancel_slot['success']) && $cancel_slot['success'] == 1){
-            $sql_update = "UPDATE `video_patient_transaction` SET status = '5' WHERE id = '$booking_id'";
+            $sql_update = "UPDATE video_patient_transaction SET status = '5' WHERE id = '$booking_id'";
             $query_update = mysqli_query($con, $sql_update);
             return array(
               "code" => "101",
@@ -148,18 +141,22 @@
     }
 
 
-    function razor__pay_refund($amount,$payment_id){
-
+    function razor__pay_refund($amount,$payment_id,$loc){
       $curl = curl_init();
-
       $postData = [
         "amount" => $amount,
         "payment_id" => $payment_id,
         "facilityGUID" => "f6de8499-0004-5896-ab8c-7523695Jop"
       ];
 
+      if($loc == 'sarvodaya-hospital-research-centre-sector-8'){
+        $razorpay_url = "https://www.sarvodayahospital.com/mapp/paymentgatway/noida_refund.php";
+      }else{
+        $razorpay_url = "https://www.sarvodayahospital.com/mapp/paymentgatway/noida_refund.php";
+      }
+
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://www.sarvodayahospital.com/mapp/paymentgatway/noida_refund.php',
+        CURLOPT_URL => $razorpay_url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -278,8 +275,13 @@
     }
       
 
-    function cancel_unwanted_bill($txn_no) {
-        $url = "http://mednet.anshuhospitals.in:8080/mednet/ws/patientBillingWS/cancelUnwantedBill/txnHeaderID/" . $txn_no;
+    function cancel_unwanted_bill($txn_no,$loc) {
+      if($loc == 'sarvodaya-hospital-research-centre-sector-8'){
+        $url = "http://mednet.anshuhospitals.in:2520/mednet/ws/patientBillingWS/cancelUnwantedBill/txnHeaderID/" . $txn_no;
+      }else{
+        $url = "http://mednet.anshuhospitals.in:4040/mednet/ws/patientBillingWS/cancelUnwantedBill/txnHeaderID/" . $txn_no;
+      }
+        
 
         $headers = array(
             "Content-Type: application/json",

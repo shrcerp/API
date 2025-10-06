@@ -56,8 +56,6 @@
       }
       $s_info = array();
       foreach($result["result"] as $i => $val){
-       
-
         $k = '{
                   "image": "https://sarvodayahospital19.com//api/mobile/images/sarvodaya_mobile_logo.png",
                   "title": "'.$val["report_name"].'",
@@ -65,11 +63,10 @@
                   "sub_text_1": "",
                   "click_action": "2",
                   "timestamp": "",
-                  "report_date":"'.$val['created_on'].'";
                   "next_page": {
                       "page_code": "pdf_view",
                       "data_self": "",
-                      "data_heading": "'.$hospital_name[$val['hospital']].'",
+                      "data_heading": "Sarvodaya Hospital Noida",
                       "data_url": "'.$val["link"].'"
                   }
               }';

@@ -287,7 +287,7 @@
                     },
 
                     {
-                        "title": "Other Services",
+                        "title": "IPD Services",
                         "layout_code": "305",
                         "textcolor_code": "#000000",
                         "text_fontsize": "14",
