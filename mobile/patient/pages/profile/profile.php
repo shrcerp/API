@@ -8,6 +8,17 @@
       $sql ="select * from video_patient where id='".$data["data_global"]["id"]."'";
       $query = cj_query($sql);
       $row =  cj_fetch_array($query);
+      if($row['profile_photo'] == null){
+        if($row["gender"] == "M"){
+          $profile_pic = "https://sarvodayahospital19.com//api/mobile/images/male_icon.png";
+        }else if($row["gender"] == "F"){
+            $profile_pic = "https://sarvodayahospital19.com//api/mobile/images/female_icon.png";
+        }
+      }else{
+        $profile_pic = $row['profile_photo'] ;
+      }
+      
+
       $profile_pic = $row['profile_photo'] == null ? "https://sarvodayahospital.com//api/mobile/images/sarvodaya_mobile_logo.png" : $row['profile_photo'] ;
 
       $result = '[

@@ -47,25 +47,43 @@
             $decoded = json_decode($response, true);
         
             if (is_array($decoded) && count($decoded) > 0) {
-                return array(
-                    "code" => "101",
-                    "message" => "success",
-                    "result" => array(
-                        "title" => "Document Found",
-                        "layout_code" => "1",
-                        "layout_des" => "info_card",
-                        "sub_text" => "",
-                        "image" => "",
-                        "timestamp" => "",
-                        "web_link" => "",
-                        "web_view" => "0",
-                        "click_action" => "0",
-                        "web_view_heading" => "",
-                        "page_code" => "5020",
-                        "next_page" => [],
-                        "elements" => $decoded   // <--- response data added here
-                    )
-                );
+                $bill_data = '[
+                    {
+                        "title": "",
+                        "layout_code": "73-1",
+                        "layout_des": "info_card",
+                        "sub_text": "",
+                        "image": "",
+                        "timestamp": "",
+                        "web_link": "",
+                        "web_view": "0",
+                        "click_action": "0",
+                        "web_view_heading": "",
+                        "page_code": "5020",
+                        "next_page": [],
+                        "elements": []
+                    }
+                ]';
+
+                $bill_data = json_decode($bill_data,1);
+                foreach ($decoded as $key => $row) {
+                    $a ='{
+                        "image": "https://sarvodayahospital19.com//api/mobile/images/sarvodaya_mobile_logo.png",
+                        "title": "'.$row["FULL_NAME"].'",
+                        "sub_text_1": "",
+                        "click_action": "2",
+                        "timestamp": "",
+                        "next_page": {
+                            "page_code": "pdf_view",
+                            "data_self": "",
+                            "is_download" : "0",
+                            "data_heading": "Discharge Summary",
+                            "data_url": "'.$row['DOCUMENT_PATH'].'"
+                        }
+                    }';
+                    $bill_data[0]["elements"][] = json_decode($a,1);
+                }
+                return $bill_data;
             }
         }
 

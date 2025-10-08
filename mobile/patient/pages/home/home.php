@@ -199,9 +199,7 @@
                               "title": "My Report",
                               "sub_text": "",
                               "color": "#008fc5",
-
-                              "image": "Reports",  
-
+                              "image": "My_Reports_home",  
                               "click_action": "1",
                               "next_page": {
                                   "page_code": "view_data",
@@ -215,7 +213,7 @@
                             "title": "Book Lab Test",
                             "sub_text": "",
                             "color": "#f58220",
-                            "image": "LabTest",
+                            "image": "Lab_Tests_Home",
                             "click_action": "1",
                             "next_page": {
                                 "page_code": "page_view",
@@ -256,7 +254,7 @@
                             "elements": []
                         },
                         {
-                            "title": "Diabitic Care",
+                            "title": "Diabetic Care",
                             "sub_text": "",
                             "color": "#f58220",
                             "image": "Diabitic",
@@ -302,10 +300,10 @@
                                 "title": "e-KYC",
                                 "sub_text": "",
                                 "color": "#f58220",
-                                "image": "EKYC_1",
+                                "image": "E-KYC",
                                 "click_action": "1",
                                 "next_page": {
-                                    "page_code": "view_data",
+                                    "page_code": "coming_soon",
                                     "data_self": "1",
                                     "data_heading": "e-KYC",
                                     "data_url": "'.$dev_url.'e_kyc"
@@ -316,7 +314,7 @@
                                 "title": "Attendant Pass",
                                 "sub_text": "",
                                 "color": "#f58220",
-                                "image": "AttendantPass",
+                                "image": "AttendantPass_home",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "page_view",
@@ -331,7 +329,7 @@
                                 "title": "Discharge Summary",
                                 "sub_text": "",
                                 "color": "#008fc5",
-                                "image": "Bills",
+                                "image": "Discharge_summary",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "view_data",
@@ -345,7 +343,7 @@
                                 "title": "My Bills",
                                 "sub_text": "",
                                 "color": "#008fc5",
-                                "image": "bills_1",
+                                "image": "My_Bills",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "coming_soon",
@@ -359,7 +357,7 @@
                                 "title": "Medical Reports",
                                 "sub_text": "",
                                 "color": "#f58220",
-                                "image": "MRD",
+                                "image": "MRD_home",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "coming_soon",
@@ -373,12 +371,12 @@
                                 "title": "My Consent",
                                 "sub_text": "",
                                 "color": "#008fc5",
-                                "image": "Myconcents",
+                                "image": "My_Consent",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "view_data",
                                     "data_self": "1",
-                                    "data_heading": "My Consent",
+                                    "data_heading": "My_Consent",
                                     "data_url": "'.$dev_url.'consent"
                                 },
                                 "elements": []
@@ -1067,15 +1065,16 @@
             );
             $data_global_e = encrypt_fun($data_global_e);
             if($selected_id == $row["id"]){
-
                 $select_value = $i;
+            }
+            if($row['profile_photo'] = null){
                 if($row["gender"] == "M"){
                     $avatar_icon = "https://sarvodayahospital19.com//api/mobile/images/male_icon.png";
                 }else if($row["gender"] == "F"){
                     $avatar_icon = "https://sarvodayahospital19.com//api/mobile/images/female_icon.png";
                 }
             }else{
-              $avatar_icon = "https://sarvodayahospital19.com//api/mobile/images/sarvodaya_mobile_logo.png";
+                $avatar_icon = $row['profile_photo'] ;
             }
             $result["elements"][] = array(
                 $i

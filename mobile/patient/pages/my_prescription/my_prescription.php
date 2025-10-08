@@ -7,7 +7,7 @@
       $mobile = $data["data_global"]["mobile"];
       
       $patient_mrn = $data["data_global"]["mrn"];
-    //   $patient_mrn = "SR820314";
+      // $patient_mrn = "SR820314";
 
       $result = get_booking_report($patient_mrn);
     //   $result = get_mrn($patient_mrn);
