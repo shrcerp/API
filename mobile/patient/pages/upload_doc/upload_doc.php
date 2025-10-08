@@ -2,9 +2,11 @@
 
     function save_upload_doc($data){
       //print_r($data);
-
+      global $dev_url;
+      global $upload_url;
       $time = time();
-  		$target_dir = "../../../admin/data/app/";
+  		$target_dir = __DIR__ . '/../../../../data/';
+      // print_r("target path : ".$target_dir);
   		//$target_file = $target_dir .time();
   		$uploadOk = 1;
   		$imageFileType = strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION));
@@ -16,10 +18,10 @@
   				return array(
                       "code" => "101"
                       ,"message" => "upload successfull"
-                      ,"result" => array( "file" => "https://sarvodayahospital.com/admin/data/app/".$image_name)
+                      ,"result" => array( "file" => $upload_url."data/".$image_name)
             );
   		  } else {
-  				return array("code" => "102", "message" => "uploading failes", "result" => array("avatar" => ""));
+  				return array("code" => "102", "message" => "uploading failed", "result" => array("avatar" => ""));
   		  }
 
 

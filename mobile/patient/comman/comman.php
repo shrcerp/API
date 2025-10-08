@@ -3,6 +3,7 @@
       include 'encrypt.php';
 
         $dev_url = "https://sarvodayahospital19.com/api/mobile/test/";
+        $upload_url = "https://sarvodayahospital19.com/api/";
         $production_url = "https://sarvodayahospital19.com/api/mobile/patient/";
 
         $hospital_name = [

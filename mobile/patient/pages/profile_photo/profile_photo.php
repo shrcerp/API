@@ -1,51 +1,24 @@
 <?php
 
-function upload_profile_photo($data){
+    function upload_profile_photo($data){
     // print_r($data);
-    global $con;
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    
-    if (isset($_FILES['image']) ) {
-        
+        global $con;
+        global $upload_url ;
         $id = $data['data_global']['id'];
-        $uploadDir = 'data/';
-        // $uploadDir = __DIR__ . '/data/'; 
-        $uploadDir = __DIR__ . '/../../data/';
-
-        
-      
-        $uploadPath = $uploadDir . basename($_FILES['image']['name']);
-        // print_r($uploadPath);
-        // return;
-      
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-            $query = "update video_patient set profile_photo='$uploadPath' where id=$id" ;
-            $query_update = mysqli_query($con, $query);
-        
-        
-            if ($query_update) {
-                echo json_encode([
-                    "success" => true,
-                    "message" => "Photo uploaded successfully",
-                    "result" => []
-                ]);
-            } else {
-                echo json_encode([
-                   "success" => false,
-                    "message" => "Please try again",
-                    "result" => []
-                ]);
-            }
-        
+        $file = $data['file'];
+        $query = "update video_patient set profile_photo='$file' where id=$id" ;
+        $query_update = mysqli_query($con, $query);
+    
+        if ($query_update) {
+            return array(
+                "code" => "101"
+                ,"message" => "upload successfull"
+                ,"result" => array( "avatar" => $file)
+            );
         } else {
-            echo json_encode(['success' => false, "result" => [], 'message' => 'Failed to upload image.']);
+            return array("code" => "102", "message" => "uploading failed", "result" => array("avatar" => ""));
+      
         }
-    } else {
-        echo json_encode(['success' => false, "result" => [], 'message' => 'No image file received']);
-    }
-
      }
 ?>
 

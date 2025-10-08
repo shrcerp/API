@@ -302,7 +302,7 @@
                                 "title": "e-KYC",
                                 "sub_text": "",
                                 "color": "#f58220",
-                                "image": "EKVYC",
+                                "image": "EKYC_1",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "view_data",
@@ -345,7 +345,7 @@
                                 "title": "My Bills",
                                 "sub_text": "",
                                 "color": "#008fc5",
-                                "image": "Bills",
+                                "image": "bills_1",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "coming_soon",
@@ -359,7 +359,7 @@
                                 "title": "Medical Reports",
                                 "sub_text": "",
                                 "color": "#f58220",
-                                "image": "Records",
+                                "image": "MRD",
                                 "click_action": "1",
                                 "next_page": {
                                     "page_code": "coming_soon",

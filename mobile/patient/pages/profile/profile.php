@@ -2,9 +2,13 @@
 
     function get_profile_data($data){
       global $dev_url;
+      global $con ;
       $name = array_key_exists('name',$data["data_global"]) ? $data["data_global"]["name"] : $data["data_global"]["patient_name"] ;
       $mrn = array_key_exists('mrn',$data["data_global"]) ? $data["data_global"]["mrn"] : $data["data_global"]["mrn_no"] ;
-      
+      $sql ="select * from video_patient where id='".$data["data_global"]["id"]."'";
+      $query = cj_query($sql);
+      $row =  cj_fetch_array($query);
+      $profile_pic = $row['profile_photo'] == null ? "https://sarvodayahospital.com//api/mobile/images/sarvodaya_mobile_logo.png" : $row['profile_photo'] ;
 
       $result = '[
                     {
@@ -20,7 +24,7 @@
                         "star_rating": "5",
                         "star_rating_text": "Cumulative",
                         "layout_des": "user_profile",
-                        "image": "https://sarvodayahospital.com//api/mobile/images/sarvodaya_mobile_logo.png",
+                        "image": "'.$profile_pic.'",
                         "timestamp": "22 Feb 2021",
                         "web_link": "",
                         "web_view": "0",

@@ -1,9 +1,7 @@
 <?php
 
     function get_notification_data($data){
-
-
-
+        global $con;
       $user_id = $data["data_global"]["id"];
       $sql = "select * from mobile_notification where user_id = '$user_id' and app_type = '1' order by id desc";
       $query = cj_query($sql);
