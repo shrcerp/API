@@ -1,9 +1,15 @@
 {
     "layout_type" : "menu"
-    ,"keys" : [{
-      "key_name" : "data_global"
-      }]
-    ,"layouts" : [
+    ,"keys" : [
+          {
+              "key_name" : "data_global"
+          },
+          {
+            "key_name": "data_self"
+          }
+    ]
+    ,
+    "layouts" : [
         {
             "name" : "discharge_summary"
             ,"api_type" : "run_function"
