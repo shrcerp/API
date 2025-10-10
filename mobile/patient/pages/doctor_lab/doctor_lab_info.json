@@ -3,6 +3,9 @@
     ,"keys" : [
         {
             "key_name" : "data_global"
+        },
+        {
+            "key_name" : "data_self"
         }
     ]
     ,
