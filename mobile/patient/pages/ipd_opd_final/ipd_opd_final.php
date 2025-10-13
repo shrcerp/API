@@ -3,9 +3,35 @@
         global $con;
     
         // $mrn = $data['data_global']['mrn'];
-        $mrn = 'SR588436';
+        $mrn = 'SR1055081';
+            
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://sarvodayahospital19.com/pdm/API/ip_from_mrn',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array('mrn' => $mrn),
+        CURLOPT_HTTPHEADER => array(
+            'Cookie: ci_session=b4391faa3a96315824464fafbb0eab31e998b57c'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        $postmanapi = json_decode($response, true);
+
+
+
+
         // $ip = $data['data_self']['ip'];
-        $ip = 'IP123';
+        $ip = $postmanapi['IP'];
 
         $sql = "SELECT * FROM patient_acknowledgement WHERE mrn = '$mrn' AND ip = '$ip' and status=1";
         $query = mysqli_query($con, $sql);
