@@ -27,14 +27,16 @@
         curl_close($curl);
         $postmanapi = json_decode($response, true);
 
-
-
-
         // $ip = $data['data_self']['ip'];
         $ip = $postmanapi['IP'];
 
         $sql = "SELECT * FROM patient_acknowledgement WHERE mrn = '$mrn' AND ip = '$ip' and status=1";
         $query = mysqli_query($con, $sql);
+
+        $data_self = array();
+        $data_self["ip"] = $ip;
+        $data_self = encrypt_fun($data_self);
+
 
         if ($query && mysqli_num_rows($query) > 0) {
             $result = mysqli_fetch_assoc($query);
@@ -50,8 +52,22 @@
                             "click_action"=> "0",
                             "web_view_heading"=> "",
                             "page_code"=> "5020",
-                            "next_page"=> [],
-                            "elements"=> $result
+                           "elements"=> [
+                             "title"=> "IPD OPD Bill",
+                              "sub_text"=> "",
+                              "color"=> "#008fc5",
+                              "image"=> "My_Reports_home",  
+                              "click_action"=> "1",
+                              "next_page"=> [
+                                  "page_code"=> "view_data",
+                                  "data_self"=> "'.$data_self.'",
+                                  "is_download" => 0,
+                                  "data_heading"=> "My Bills",
+                                  "data_url"=> ""
+                              ],
+                              "elements"=> $result
+                           ]
+              
             ];
         }else {
             return array(
